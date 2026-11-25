@@ -1,0 +1,36 @@
+name: Prüfen
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: Inhalte, Übersetzungen, Lösbarkeit, Passwortregeln, Codes
+        run: npm run verify
+      - name: Gebündelte Brücke ist aktuell?
+        run: |
+          npm run native
+          git diff --exit-code www/vendor/native.js || { echo "::error::www/vendor/native.js ist veraltet – lokal 'npm run native' ausführen und einchecken"; exit 1; }
+      - name: Rechtstexte aktuell?
+        run: |
+          python3 tools/make-legal.py
+          git diff --exit-code www/*.html || { echo "::error::Rechtstexte veraltet – 'python3 tools/make-legal.py' ausführen und einchecken"; exit 1; }
+      - name: Ablauftest im Browser (alle Stationen, Stufen, Profile, Schule)
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          (python -m http.server 8765 --directory www > /dev/null 2>&1 &)
+          sleep 2
+          python smoketest.py
