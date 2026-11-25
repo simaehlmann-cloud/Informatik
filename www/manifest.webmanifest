@@ -1,0 +1,10 @@
+{
+  "name": "Bit für Bit – Informatik",
+  "short_name": "Bit für Bit",
+  "lang": "de",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F3F5FB",
+  "theme_color": "#4255E8",
+  "icons": [{ "src": "img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

@@ -1,0 +1,10 @@
+{
+  "appId": "de.maehlmann.informatikwerkstatt",
+  "appName": "Bit für Bit",
+  "webDir": "www",
+  "backgroundColor": "#F3F5FB",
+  "ios": {
+    "contentInset": "never",
+    "allowsLinkPreview": false
+  }
+}

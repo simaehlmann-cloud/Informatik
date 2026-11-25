@@ -1,0 +1,24 @@
+{
+  "name": "informatik-werkstatt",
+  "private": true,
+  "version": "0.4.0",
+  "description": "Bit für Bit – Selbstlern-App für Informatik in den Jahrgängen 9 und 10 (Niedersachsen).",
+  "scripts": {
+    "native": "esbuild native/bridge.js --bundle --format=iife --minify --target=safari15 --outfile=www/vendor/native.js",
+    "legal": "python3 tools/make-legal.py",
+    "verify": "node validate.js",
+    "cap:sync": "npm run native && cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor-community/text-to-speech": "^8.0.2",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/ios": "^8.6.0",
+    "@capacitor/preferences": "^8.0.0",
+    "@capacitor/share": "8.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.0",
+    "esbuild": "^0.25.0"
+  }
+}
