@@ -13,15 +13,17 @@ Gebaut wird auf einem Mac von GitHub (kein eigener Mac nötig), genauso wie bei 
 
 ## Einmalig
 
-1. **Repository anlegen** (z. B. `simaehlmann-cloud/informatik-werkstatt`, privat) und diesen Ordner hochladen.
+1. **Repository anlegen** (`simaehlmann-cloud/Informatik`, öffentlich wie die anderen Apps (nötig für GitHub Pages)) und diesen Ordner hochladen.
 2. **App-Kennung registrieren**: developer.apple.com → Certificates, IDs & Profiles → Identifiers → „+“ → App IDs → App → Bundle ID *explicit* `de.maehlmann.informatikwerkstatt`. Es werden keine besonderen Fähigkeiten (Capabilities) gebraucht.
 3. **App in App Store Connect anlegen**: Apps → „+“ → Neue App → iOS, Name „Bit für Bit – Informatik“, Primärsprache Deutsch, Bundle-ID von oben, SKU z. B. `bitfuerbit`.
 4. **Secrets übernehmen** (Repository → Settings → Secrets and variables → Actions). Es sind dieselben Werte wie bei Mathe-Jahrmarkt:
    - `APPLE_TEAM_ID`
-   - `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` (API-Schlüssel mit Rolle „App Manager“; die .p8-Datei als Text oder Base64)
+   - `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` (API-Schlüssel mit Rolle „Admin“, damit das App-Store-Profil automatisch angelegt werden darf; die .p8-Datei als Text oder Base64)
    - `IOS_DIST_P12_BASE64`, `IOS_DIST_P12_PASSWORD` (Verteilungszertifikat; gilt für alle Apps des Teams)
 
    Ist der Inhalt der .p12 nicht mehr zur Hand: Workflow **„iOS Zertifikat erstellen“** einmal laufen lassen und die Anleitung in der Ausgabe befolgen.
+
+5. **Webseite (Support- und Datenschutz-URL)**: Settings → Pages → „Deploy from a branch“, Branch `main`, Ordner **`/docs`** (nicht „/ (root)“) → Save. Nach 1–2 Minuten erreichbar unter https://simaehlmann-cloud.github.io/Informatik/ – die Seiten erzeugt `python3 tools/make-legal.py` aus denselben Texten wie in der App.
 
 ## Jeder Upload
 

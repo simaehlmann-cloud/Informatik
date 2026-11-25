@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Datenschutz – Bit für Bit</title>
+<style>
+  :root { --bg:#F3F5FB; --card:#fff; --ink:#141B3A; --muted:#5A6386; --line:#E2E7F3; --pri:#4255E8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0E1326; --card:#171F3A; --ink:#EEF1FB; --muted:#A4ACCB; --line:#2A3560; --pri:#7C8BFF; } }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:calc(24px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom)); background:var(--bg); color:var(--ink);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height:1.6; }
+  main { max-width:760px; margin:0 auto; background:var(--card); border:1.5px solid var(--line); border-radius:24px; padding:24px; border-top:8px solid var(--pri); }
+  h1 { font-family: ui-rounded, "SF Pro Rounded", system-ui, sans-serif; font-size:clamp(26px,5vw,34px); margin:0 0 4px; }
+  h2 { font-size:clamp(18px,4vw,21px); margin:28px 0 8px; }
+  .stand { color:var(--muted); font-size:14px; margin:0 0 20px; }
+  address { font-style:normal; }
+  a { color:var(--pri); }
+  .links { margin-top:32px; display:flex; flex-wrap:wrap; gap:10px; }
+  .links a { display:inline-block; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:700; border:2px solid var(--line); color:var(--ink); }
+  pre { white-space:pre-wrap; font-size:12px; background:var(--bg); padding:12px; border-radius:12px; overflow-x:auto; }
+  .links a.back { background:var(--pri); border-color:var(--pri); color:#fff; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Datenschutzerklärung</h1>
+  <p class="stand">Bit für Bit · Stand: November 2026 (Version 0.4)</p>
+
+  <h2>1. Verantwortlicher</h2>
+  <p>Verantwortlich im Sinne von Art. 4 Nr. 7 DSGVO ist:</p>
+  <address>
+    Wisdompeak Apps<br>
+    Inhaber: Simon Mählmann<br>
+    Oderstraße 13<br>
+    28844 Weyhe<br>
+    Deutschland
+  </address>
+  <p>E-Mail: <a href="mailto:smaehlmann.appdev@gmail.com">smaehlmann.appdev@gmail.com</a></p>
+  <p>Ein Datenschutzbeauftragter ist nicht bestellt, da die Voraussetzungen des Art. 37 DSGVO und des § 38 BDSG nicht vorliegen.</p>
+
+  <h2>2. Grundsatz: keine Datenerhebung</h2>
+  <p>Bit für Bit verarbeitet keine personenbezogenen Daten auf Servern des Anbieters. Die App funktioniert vollständig offline. Es gibt keine Konten beim Anbieter, keine Registrierung, keine Analyse- oder Trackingdienste, keine Werbung und keine Weitergabe von Daten an Dritte. Profilnamen und Passwörter (falls Profile genutzt werden) bleiben auf dem Gerät. Die App ist damit auch für den Einsatz im Unterricht geeignet.</p>
+
+  <h2>3. Welche Daten auf dem Gerät gespeichert werden</h2>
+  <p>Ausschließlich im lokalen Speicher der App auf dem jeweiligen Gerät liegen:</p>
+  <ul>
+    <li><b>Profile:</b> ein Vor- oder Spitzname bzw. ein Kürzel, das Passwort nur als Hashwert (PBKDF2 mit Salt – das Passwort selbst wird nirgends gespeichert), die gewählte Stufe und gegebenenfalls die beigetretene Klasse</li>
+    <li><b>Lernfortschritt je Profil:</b> Sterne je Station und Stufe, Anzahl der Versuche, Fehler, genutzte Tipps, Übungszeit und Datum der letzten Nutzung</li>
+    <li><b>Eltern-/Lehrkraftbereich:</b> das Passwort dieses Bereichs nur als Hashwert; auf dem Gerät der Lehrkraft außerdem die angelegten Klassen, die Klassenliste (Kürzel) und die eingesammelten Ergebnisse</li>
+    <li>Einstellungen zur Nutzung (ohne Profile/Zuhause/Schule, Gastzugang), Sprache, Darstellung, Schriftgröße und Tönen</li>
+  </ul>
+  <p>Eingaben in den Übungen – etwa ausprobierte Passwörter – werden nicht gespeichert und nicht übertragen. Die Vorlesefunktion nutzt die Sprachausgabe Ihres Geräts; die App überträgt dabei selbst keine Daten. Nach 15 Minuten ohne Nutzung wird ein Profil automatisch abgemeldet.</p>
+  <p>Wird die App „ohne Profile“ genutzt, gibt es keinen Namen und kein Passwort; gespeichert werden nur Stufe und Lernfortschritt des Geräts. Wer „als Gast“ übt, dessen Fortschritt wird nur bis zum Schließen der App vorgehalten und danach verworfen.</p>
+  <p>Alle Daten sind für den Anbieter nicht einsehbar. Profile und Klassen lassen sich im Eltern- bzw. Lehrkraftbereich löschen; Klassen und eingesammelte Ergebnisse werden zum Schuljahresende (31. Juli) automatisch gelöscht. Beim Entfernen der App wird alles gelöscht.</p>
+
+  <h2>3a. Weitergabe von Ergebnissen per QR-Code (Schule)</h2>
+  <p>Im Schulbetrieb kann ein Profil seinen Lernfortschritt als QR-Code anzeigen. Die Lehrkraft liest ihn mit der Kamera ihres Geräts ein. Der Code enthält nur Name bzw. Kürzel, Sterne, Versuche, Fehler, Tipps, Übungszeit und Zeitpunkte sowie eine Prüfsumme. Die Übertragung erfolgt direkt von Bildschirm zu Kamera, ohne Internet und ohne Server des Anbieters.</p>
+  <p>Für die Verarbeitung der Schülerdaten auf schuleigenen Geräten und auf dem Gerät der Lehrkraft ist die Schule verantwortlich. Wir empfehlen, Kürzel statt voller Namen zu verwenden.</p>
+
+  <h2>3b. Kamera</h2>
+  <p>Die Kamera wird nur verwendet, wenn Sie einen Klassen- oder Abgabe-Code scannen, und nur nach Ihrer Erlaubnis. Die Bilder werden ausschließlich auf dem Gerät ausgewertet und weder gespeichert noch übertragen. Alternativ kann ein Foto gewählt oder der Code als Text eingefügt werden.</p>
+
+  <h2>4. Kauf der App</h2>
+  <p>Die App wird als Einmalkauf über den App-Vertrieb angeboten, über den Sie sie installieren. Bezahlung und Abwicklung erfolgen ausschließlich durch den Betreiber dieses Vertriebs nach dessen Datenschutzbestimmungen. Der Anbieter erhält dabei keine Angaben, mit denen sich einzelne Käuferinnen oder Käufer identifizieren lassen, sondern nur zusammengefasste Verkaufszahlen. Die App selbst enthält keine Kaufknöpfe und keine In-App-Käufe.</p>
+
+  <h2>5. Absturzberichte und Statistiken des App-Vertriebs</h2>
+  <p>Wenn Sie es in den Einstellungen Ihres Geräts erlaubt haben, stellt der Betreiber des App-Vertriebs dem Anbieter zusammengefasste, nicht personenbezogene Statistiken und Absturzberichte zur Verfügung. Darauf hat die App keinen Einfluss; die Einstellung können Sie jederzeit auf Ihrem Gerät ändern.</p>
+
+  <h2>6. Kontakt per E-Mail</h2>
+  <p>Wenn Sie über „Feedback senden“ oder auf anderem Weg eine E-Mail schreiben, wird Ihr E-Mail-Programm geöffnet. Die E-Mail enthält, wenn Sie sie nicht ändern, die App-Version, die gewählte Sprache und Angaben zum Gerätetyp, damit Fehler nachvollzogen werden können. Ihre Nachricht und Ihre E-Mail-Adresse werden nur zur Bearbeitung Ihres Anliegens verwendet (Art. 6 Abs. 1 lit. f DSGVO) und gelöscht, sobald sie dafür nicht mehr benötigt werden.</p>
+
+  <h2>7. Berechtigungen</h2>
+  <p>Die App nutzt die Kamera nur zum Scannen von Codes (siehe 3b). Mikrofon, Standort und Kontakte werden nicht verwendet; auf Fotos greift die App nur zu, wenn Sie selbst ein Foto eines Codes auswählen. Die App baut keine Verbindungen zum Internet auf.</p>
+
+  <h2>8. Ihre Rechte</h2>
+  <p>Sie haben die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch nach Art. 15 bis 21 DSGVO sowie das Recht auf Beschwerde bei einer Datenschutz-Aufsichtsbehörde. Da der Anbieter keine personenbezogenen Daten aus der App speichert, werden Auskunfts- oder Löschanfragen an den Anbieter in der Regel ins Leere gehen. Alle Daten können Sie in der App jederzeit selbst löschen.</p>
+
+  <h2>9. Änderungen</h2>
+  <p>Diese Erklärung wird angepasst, sobald sich datenschutzrelevante Funktionen der App ändern. Die aktuelle Fassung ist stets in der App abrufbar.</p>
+  <div class="links">
+    <a class="back" href="index.html">Hilfe &amp; Kontakt</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz-en.html">English</a>
+  </div>
+</main>
+</body>
+</html>

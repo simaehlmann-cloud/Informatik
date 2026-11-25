@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Help – Bit für Bit</title>
+<style>
+  :root { --bg:#F3F5FB; --card:#fff; --ink:#141B3A; --muted:#5A6386; --line:#E2E7F3; --pri:#4255E8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0E1326; --card:#171F3A; --ink:#EEF1FB; --muted:#A4ACCB; --line:#2A3560; --pri:#7C8BFF; } }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:calc(24px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom)); background:var(--bg); color:var(--ink);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height:1.6; }
+  main { max-width:760px; margin:0 auto; background:var(--card); border:1.5px solid var(--line); border-radius:24px; padding:24px; border-top:8px solid var(--pri); }
+  h1 { font-family: ui-rounded, "SF Pro Rounded", system-ui, sans-serif; font-size:clamp(26px,5vw,34px); margin:0 0 4px; }
+  h2 { font-size:clamp(18px,4vw,21px); margin:28px 0 8px; }
+  .stand { color:var(--muted); font-size:14px; margin:0 0 20px; }
+  address { font-style:normal; }
+  a { color:var(--pri); }
+  .links { margin-top:32px; display:flex; flex-wrap:wrap; gap:10px; }
+  .links a { display:inline-block; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:700; border:2px solid var(--line); color:var(--ink); }
+  pre { white-space:pre-wrap; font-size:12px; background:var(--bg); padding:12px; border-radius:12px; overflow-x:auto; }
+  .links a.back { background:var(--pri); border-color:var(--pri); color:#fff; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Bit für Bit – Computer Science</h1>
+  <p class="stand">Help and contact · Last updated: November 2026 (version 0.4)</p>
+  <p>Bit für Bit is a learning app for computer science in years 9 and 10: 36 short stations in nine topics (computers &amp; hardware, spreadsheets, secure passwords, block coding, encryption, microcontrollers, encoding data, the internet, data &amp; law), each on three levels. It works without internet, without ads and without accounts with the provider.</p>
+
+  <h2>Contact</h2>
+  <p>Questions, bugs or ideas? Write to <a href="mailto:smaehlmann.appdev@gmail.com?subject=Bit für Bit">smaehlmann.appdev@gmail.com</a>. In the app you can also use Settings → “Send feedback”.</p>
+
+  <h2>Frequently asked questions</h2>
+  <p><b>A child forgot their password.</b><br>In the parent or teacher area, choose “Reset password” for the profile. The child gets a one-time password and then sets a new, secure password.</p>
+  <p><b>The password for the parent or teacher area is forgotten.</b><br>For security reasons it cannot be recovered. Under “Forgotten the password?” all data on the device can be deleted; the app is then set up again.</p>
+  <p><b>How do results get to the teacher?</b><br>The teacher creates a class in the teacher area and shows the class code. Students use “Join a class” in their profile menu and show their code with “Hand in progress”. The teacher collects it with “Collect results” using the camera – directly from screen to camera, without internet.</p>
+  <p><b>The camera does not scan.</b><br>Check in the device settings that the app may use the camera. Alternatively, choose a photo of the code or copy and paste the code as text.</p>
+  <p><b>Do I need profiles?</b><br>No. With “Just start” you practise without profiles or passwords. Profiles can be set up later in the settings; the stars collected so far are kept.</p>
+  <p><b>Where is the data, and how do I delete it?</b><br>Only on the device. Delete profiles and classes in the parent or teacher area, where you also find “Delete all data”. Removing the app deletes everything. More in the <a href="datenschutz-en.html">privacy policy</a>.</p>
+  <p><b>Is there a school licence?</b><br>The app is a one-time purchase without in-app purchases. Schools get it through the app store’s volume purchase programme at the education discount.</p>
+  <div class="links">
+    <a class="back" href="datenschutz-en.html">Privacy</a>
+    <a href="impressum-en.html">Legal notice</a>
+    <a href="lizenzen-en.html">Licences</a>
+    <a href="index.html">Deutsch</a>
+  </div>
+</main>
+</body>
+</html>

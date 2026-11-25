@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Erzeugt Datenschutz und Impressum (Deutsch/Englisch) in www/.
+"""Erzeugt Datenschutz, Impressum und Lizenzen (Deutsch/Englisch) in www/ und – zusammen mit
+den Support-Seiten – die öffentliche Webseite in docs/ (GitHub Pages, Ordner /docs).
 
     python3 tools/make-legal.py
 
@@ -259,10 +260,73 @@ LINKS = {
     "lizenzen-en.html": ("Back to the app", "impressum-en.html", "Legal notice", "lizenzen.html", "Deutsch"),
 }
 
+SUPPORT_DE = f"""
+  <h1>{APP} – Informatik</h1>
+  <p class="stand">Hilfe und Kontakt · {STAND_DE}</p>
+  <p>{APP} ist eine Lern-App für Informatik in den Jahrgängen 9 und 10: 36 kurze Stationen in neun Themen (Computer &amp; Hardware, Tabellenkalkulation, sichere Passwörter, Blockprogrammierung, Verschlüsselung, Mikrocontroller, Daten codieren, Internet, Daten &amp; Recht), jeweils in drei Stufen. Sie funktioniert ohne Internet, ohne Werbung und ohne Konten beim Anbieter.</p>
+
+  <h2>Kontakt</h2>
+  <p>Fragen, Fehler oder Ideen? Schreiben Sie an <a href="mailto:{MAIL}?subject={APP}">{MAIL}</a>. In der App geht das auch über Einstellungen → „Feedback senden“.</p>
+
+  <h2>Häufige Fragen</h2>
+  <p><b>Ein Kind hat sein Passwort vergessen.</b><br>Im Eltern- bzw. Lehrkraftbereich beim Profil „Passwort zurücksetzen“ wählen. Das Kind bekommt ein Einmal-Passwort und legt danach ein neues, sicheres Passwort fest.</p>
+  <p><b>Das Passwort für den Eltern- bzw. Lehrkraftbereich ist vergessen.</b><br>Aus Sicherheitsgründen lässt es sich nicht wiederherstellen. Unter „Passwort vergessen?“ können alle Daten auf dem Gerät gelöscht werden; danach wird die App neu eingerichtet.</p>
+  <p><b>Wie kommen die Ergebnisse zur Lehrkraft?</b><br>Die Lehrkraft legt im Lehrkraftbereich eine Klasse an und zeigt den Klassen-Code. Die Schülerinnen und Schüler treten im Profilmenü mit „Klasse beitreten“ bei und zeigen mit „Fortschritt abgeben“ ihren Code. Die Lehrkraft sammelt ihn mit „Ergebnisse einsammeln“ per Kamera ein. Alles läuft direkt von Bildschirm zu Kamera, ohne Internet.</p>
+  <p><b>Die Kamera scannt nicht.</b><br>Prüfen Sie in den Einstellungen des Geräts, ob die App die Kamera nutzen darf. Alternativ kann ein Foto des Codes gewählt oder der Code als Text kopiert und eingefügt werden.</p>
+  <p><b>Muss man Profile anlegen?</b><br>Nein. Mit „Einfach loslegen“ wird ohne Profile und Passwörter geübt. Profile lassen sich später in den Einstellungen einrichten; die bisherigen Sterne bleiben erhalten.</p>
+  <p><b>Wo liegen die Daten, und wie lösche ich sie?</b><br>Ausschließlich auf dem Gerät. Profile und Klassen löschen Sie im Eltern- bzw. Lehrkraftbereich, dort auch „Alle Daten löschen“. Beim Entfernen der App wird alles gelöscht. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <p><b>Gibt es eine Schullizenz?</b><br>Die App ist ein Einmalkauf ohne In-App-Käufe. Schulen erhalten sie über das Volumenprogramm des App-Vertriebs zum Bildungsrabatt.</p>
+"""
+SUPPORT_EN = f"""
+  <h1>{APP} – Computer Science</h1>
+  <p class="stand">Help and contact · {STAND_EN}</p>
+  <p>{APP} is a learning app for computer science in years 9 and 10: 36 short stations in nine topics (computers &amp; hardware, spreadsheets, secure passwords, block coding, encryption, microcontrollers, encoding data, the internet, data &amp; law), each on three levels. It works without internet, without ads and without accounts with the provider.</p>
+
+  <h2>Contact</h2>
+  <p>Questions, bugs or ideas? Write to <a href="mailto:{MAIL}?subject={APP}">{MAIL}</a>. In the app you can also use Settings → “Send feedback”.</p>
+
+  <h2>Frequently asked questions</h2>
+  <p><b>A child forgot their password.</b><br>In the parent or teacher area, choose “Reset password” for the profile. The child gets a one-time password and then sets a new, secure password.</p>
+  <p><b>The password for the parent or teacher area is forgotten.</b><br>For security reasons it cannot be recovered. Under “Forgotten the password?” all data on the device can be deleted; the app is then set up again.</p>
+  <p><b>How do results get to the teacher?</b><br>The teacher creates a class in the teacher area and shows the class code. Students use “Join a class” in their profile menu and show their code with “Hand in progress”. The teacher collects it with “Collect results” using the camera – directly from screen to camera, without internet.</p>
+  <p><b>The camera does not scan.</b><br>Check in the device settings that the app may use the camera. Alternatively, choose a photo of the code or copy and paste the code as text.</p>
+  <p><b>Do I need profiles?</b><br>No. With “Just start” you practise without profiles or passwords. Profiles can be set up later in the settings; the stars collected so far are kept.</p>
+  <p><b>Where is the data, and how do I delete it?</b><br>Only on the device. Delete profiles and classes in the parent or teacher area, where you also find “Delete all data”. Removing the app deletes everything. More in the <a href="datenschutz-en.html">privacy policy</a>.</p>
+  <p><b>Is there a school licence?</b><br>The app is a one-time purchase without in-app purchases. Schools get it through the app store’s volume purchase programme at the education discount.</p>
+"""
+
+DOCS = os.path.join(ROOT, "docs")
+os.makedirs(DOCS, exist_ok=True)
+DOC_LINKS = {
+    "index.html": ("Datenschutz", "datenschutz.html", "Impressum", "impressum.html", "English", "index-en.html"),
+    "index-en.html": ("Privacy", "datenschutz-en.html", "Legal notice", "impressum-en.html", "Deutsch", "index.html"),
+}
 for name, (lang, title, body) in PAGES.items():
     back, other, other_label, lang_link, lang_label = LINKS[name]
     html = HEAD.format(lang=lang, title=title, app=APP) + body + FOOT.format(
         back=back, other=other, other_label=other_label, lang_link=lang_link, lang_label=lang_label)
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
         f.write(html)
-print("Rechtstexte geschrieben:", ", ".join(PAGES))
+    # Webseite: gleicher Text, „zurück“ führt zur Hilfe-Seite statt in die App
+    web = html.replace('href="index.html">Zurück zur App<', 'href="index.html">Hilfe &amp; Kontakt<').replace('href="index.html">Back to the app<', 'href="index-en.html">Help &amp; contact<')
+    with open(os.path.join(DOCS, name), "w", encoding="utf-8") as f:
+        f.write(web)
+
+for name, body in (("index.html", SUPPORT_DE), ("index-en.html", SUPPORT_EN)):
+    lang = "de" if name == "index.html" else "en"
+    a, al, b, bl, c, cl = DOC_LINKS[name]
+    lic_link = "lizenzen.html" if lang == "de" else "lizenzen-en.html"
+    foot = f"""  <div class="links">
+    <a class="back" href="{al}">{a}</a>
+    <a href="{bl}">{b}</a>
+    <a href="{lic_link}">{'Lizenzen' if lang == 'de' else 'Licences'}</a>
+    <a href="{cl}">{c}</a>
+  </div>
+</main>
+</body>
+</html>
+"""
+    with open(os.path.join(DOCS, name), "w", encoding="utf-8") as f:
+        f.write(HEAD.format(lang=lang, title="Hilfe" if lang == "de" else "Help", app=APP) + body + foot)
+open(os.path.join(DOCS, ".nojekyll"), "w").close()  # GitHub Pages: Dateien unverändert ausliefern, kein Jekyll
+print("Rechtstexte geschrieben:", ", ".join(PAGES), "· Webseite in docs/")

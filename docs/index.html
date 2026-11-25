@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Hilfe – Bit für Bit</title>
+<style>
+  :root { --bg:#F3F5FB; --card:#fff; --ink:#141B3A; --muted:#5A6386; --line:#E2E7F3; --pri:#4255E8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0E1326; --card:#171F3A; --ink:#EEF1FB; --muted:#A4ACCB; --line:#2A3560; --pri:#7C8BFF; } }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:calc(24px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom)); background:var(--bg); color:var(--ink);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height:1.6; }
+  main { max-width:760px; margin:0 auto; background:var(--card); border:1.5px solid var(--line); border-radius:24px; padding:24px; border-top:8px solid var(--pri); }
+  h1 { font-family: ui-rounded, "SF Pro Rounded", system-ui, sans-serif; font-size:clamp(26px,5vw,34px); margin:0 0 4px; }
+  h2 { font-size:clamp(18px,4vw,21px); margin:28px 0 8px; }
+  .stand { color:var(--muted); font-size:14px; margin:0 0 20px; }
+  address { font-style:normal; }
+  a { color:var(--pri); }
+  .links { margin-top:32px; display:flex; flex-wrap:wrap; gap:10px; }
+  .links a { display:inline-block; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:700; border:2px solid var(--line); color:var(--ink); }
+  pre { white-space:pre-wrap; font-size:12px; background:var(--bg); padding:12px; border-radius:12px; overflow-x:auto; }
+  .links a.back { background:var(--pri); border-color:var(--pri); color:#fff; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Bit für Bit – Informatik</h1>
+  <p class="stand">Hilfe und Kontakt · Stand: November 2026 (Version 0.4)</p>
+  <p>Bit für Bit ist eine Lern-App für Informatik in den Jahrgängen 9 und 10: 36 kurze Stationen in neun Themen (Computer &amp; Hardware, Tabellenkalkulation, sichere Passwörter, Blockprogrammierung, Verschlüsselung, Mikrocontroller, Daten codieren, Internet, Daten &amp; Recht), jeweils in drei Stufen. Sie funktioniert ohne Internet, ohne Werbung und ohne Konten beim Anbieter.</p>
+
+  <h2>Kontakt</h2>
+  <p>Fragen, Fehler oder Ideen? Schreiben Sie an <a href="mailto:smaehlmann.appdev@gmail.com?subject=Bit für Bit">smaehlmann.appdev@gmail.com</a>. In der App geht das auch über Einstellungen → „Feedback senden“.</p>
+
+  <h2>Häufige Fragen</h2>
+  <p><b>Ein Kind hat sein Passwort vergessen.</b><br>Im Eltern- bzw. Lehrkraftbereich beim Profil „Passwort zurücksetzen“ wählen. Das Kind bekommt ein Einmal-Passwort und legt danach ein neues, sicheres Passwort fest.</p>
+  <p><b>Das Passwort für den Eltern- bzw. Lehrkraftbereich ist vergessen.</b><br>Aus Sicherheitsgründen lässt es sich nicht wiederherstellen. Unter „Passwort vergessen?“ können alle Daten auf dem Gerät gelöscht werden; danach wird die App neu eingerichtet.</p>
+  <p><b>Wie kommen die Ergebnisse zur Lehrkraft?</b><br>Die Lehrkraft legt im Lehrkraftbereich eine Klasse an und zeigt den Klassen-Code. Die Schülerinnen und Schüler treten im Profilmenü mit „Klasse beitreten“ bei und zeigen mit „Fortschritt abgeben“ ihren Code. Die Lehrkraft sammelt ihn mit „Ergebnisse einsammeln“ per Kamera ein. Alles läuft direkt von Bildschirm zu Kamera, ohne Internet.</p>
+  <p><b>Die Kamera scannt nicht.</b><br>Prüfen Sie in den Einstellungen des Geräts, ob die App die Kamera nutzen darf. Alternativ kann ein Foto des Codes gewählt oder der Code als Text kopiert und eingefügt werden.</p>
+  <p><b>Muss man Profile anlegen?</b><br>Nein. Mit „Einfach loslegen“ wird ohne Profile und Passwörter geübt. Profile lassen sich später in den Einstellungen einrichten; die bisherigen Sterne bleiben erhalten.</p>
+  <p><b>Wo liegen die Daten, und wie lösche ich sie?</b><br>Ausschließlich auf dem Gerät. Profile und Klassen löschen Sie im Eltern- bzw. Lehrkraftbereich, dort auch „Alle Daten löschen“. Beim Entfernen der App wird alles gelöscht. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <p><b>Gibt es eine Schullizenz?</b><br>Die App ist ein Einmalkauf ohne In-App-Käufe. Schulen erhalten sie über das Volumenprogramm des App-Vertriebs zum Bildungsrabatt.</p>
+  <div class="links">
+    <a class="back" href="datenschutz.html">Datenschutz</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="lizenzen.html">Lizenzen</a>
+    <a href="index-en.html">English</a>
+  </div>
+</main>
+</body>
+</html>

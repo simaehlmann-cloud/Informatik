@@ -268,14 +268,33 @@ def hold(page, ms):
     page.wait_for_timeout(ms)
 
 
+SCROLL = """(arg) => new Promise(done => {
+  const el = document.scrollingElement, from = el.scrollTop;
+  const to = arg.to === 'end' ? el.scrollHeight - innerHeight : arg.to;
+  const t0 = performance.now();
+  const step = t => {
+    const p = Math.min(1, (t - t0) / arg.ms), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    el.scrollTop = from + (to - from) * e;
+    p < 1 ? requestAnimationFrame(step) : done();
+  };
+  requestAnimationFrame(step);
+})"""
+
+
+def scroll(page, to, ms):
+    page.evaluate(SCROLL, {"to": to, "ms": ms})
+
+
 def script(page, lang):
-    """Ablauf der Vorschau (~25 s)."""
-    hold(page, 1300)
-    tap(page, ".ch-card >> nth=0", 700)                      # Computer & Hardware
-    tap(page, ".st-row >> nth=0", 900)                          # Eingabe oder Ausgabe?
-    for k in range(3):                                         # drei Geräte einsortieren
+    """Ablauf der Vorschau (~27 s): Startbildschirm mit allen Themen, dann zwei Stationen aus „Computer & Hardware“."""
+    hold(page, 1100)                                           # Startbildschirm
+    scroll(page, "end", 3700); hold(page, 400)                 # alle neun Themen
+    scroll(page, 0, 1000); hold(page, 200)
+    tap(page, ".ch-card >> nth=0", 900)                       # Computer & Hardware
+    tap(page, ".st-row >> nth=0", 900)                         # Station 1: Eingabe oder Ausgabe?
+    for k in range(2):                                         # zwei Geräte einsortieren
         if k == 1:
-            tap(page, ".sort-card .info-btn", 1500)            # i-Karte lesen
+            tap(page, ".sort-card .info-btn", 1300)            # i-Karte lesen
             tap(page, ".sheet-card .icon-btn", 400)
         b = page.evaluate("""() => {
           const st = resolveStation(CHAPTERS.flatMap(c => c.stations).find(s => s.id === 'hw-io'), Store.level());
@@ -283,8 +302,9 @@ def script(page, lang):
           return st.items.find(it => itemText(it) === lbl).b; }""")
         tap(page, f".bucket[data-b='{b}']", 900)
         tap(page, "#fb-btn", 500)
-    page.evaluate("window.__hideFinger()")
-    page.evaluate("go('#/s/hw-build')"); page.wait_for_selector(".pc-case"); hold(page, 700)
+    back = page.evaluate("t('backToChapter')")
+    tap(page, f".stage-head [aria-label='{back}'], [aria-label='{back}']", 900)   # zurück zum Thema
+    tap(page, ".st-row >> nth=3", 900)                         # Station 4: PC-Werkstatt
     for _ in range(3):                                         # drei Bauteile hineinziehen
         nxt = page.evaluate("""() => {
           const st = resolveStation(CHAPTERS.flatMap(c => c.stations).find(s => s.id === 'hw-build'), Store.level());
@@ -302,14 +322,11 @@ def script(page, lang):
         page.locator(f".pc-part[data-key='{key}']").first.scroll_into_view_if_needed()
         drag(page, f".pc-part[data-key='{key}']", f".slot[data-slot='{sid}']", 450)
     page.evaluate("window.__hideFinger()")
-    page.evaluate("window.__test.solve()"); hold(page, 2600)  # Rest einsetzen, einschalten, läuft
+    page.evaluate("window.__test.solve()"); hold(page, 1400)  # Rest einsetzen, einschalten, läuft
+    page.wait_for_selector("#fb.show", timeout=8000); hold(page, 800)
+    tap(page, "#fb-btn", 300)                                  # Ergebnis mit Sternen
     page.evaluate("window.__hideFinger()")
-    page.evaluate("go('#/s/pw-build')"); page.wait_for_selector(".stage input"); hold(page, 600)
-    tap(page, ".stage input", 200)
-    page.evaluate("window.__hideFinger()")
-    ex = "Igel!Mai78xyzQ" if lang == "de" else "Owl!May78xyzQ"
-    page.keyboard.type(ex, delay=190)
-    hold(page, 1600)
+    hold(page, 1700)
 
 
 def video(lang, kind, browser):

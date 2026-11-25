@@ -12,8 +12,8 @@ In App Store Connect: App-Informationen (Name, Untertitel, Kategorie) und Versio
 | Altersfreigabe | 4+ (alle Fragen mit „Nein“) |
 | Preis | Einmalkauf, Bildungsrabatt für Schulen einschalten |
 | Copyright | 2026 Simon Mählmann |
-| Support-URL | Webseite mit Kontakt (wie bei Mathe-Jahrmarkt) |
-| Datenschutz-URL | Webseite mit der Datenschutzerklärung aus `www/datenschutz.html` |
+| Support-URL | https://simaehlmann-cloud.github.io/Informatik/ |
+| Datenschutz-URL | https://simaehlmann-cloud.github.io/Informatik/datenschutz.html (englisch: …/datenschutz-en.html) |
 | App-Datenschutz | „Keine Daten erfasst“ |
 
 ---
@@ -170,7 +170,7 @@ Erzeugt mit `python3 tools/store-media.py shots` bzw. `videos` (Server auf Port 
 | `screenshots/<de|en>/iphone-6.9/` | 1320 × 2868 | iPhone 6,9" |
 | `screenshots/<de|en>/iphone-6.3/` | 1206 × 2622 | iPhone 6,3" (laut Apple die Pflichtgröße fürs iPhone) |
 | `screenshots/<de|en>/ipad-13/` | 2064 × 2752 | iPad 13" |
-| `previews/<de|en>/vorschau-iphone-*.mp4` | 886 × 1920, ca. 27 s | App-Vorschau iPhone 6,9" (gilt auch für 6,3") |
-| `previews/<de|en>/vorschau-ipad-*.mp4` | 1200 × 1600, ca. 27 s | App-Vorschau iPad 13" |
+| `previews/<de|en>/vorschau-iphone-*.mp4` | 886 × 1920, ca. 29 s | App-Vorschau iPhone 6,9" (gilt auch für 6,3") |
+| `previews/<de|en>/vorschau-ipad-*.mp4` | 1200 × 1600, ca. 29 s | App-Vorschau iPad 13" |
 
-Screenshots als JPEG (ohne Transparenz). Reihenfolge = Dateinummer (01 Start … 08 Lehrkraftbereich). Die Videos sind echte Aufnahmen aus der App (Sortieren mit Info-Karte, PC bauen und starten, Passwort-Baustelle) mit einer stummen Tonspur; ein Titelbild bei Sekunde 5 schlägt App Store Connect selbst vor.
+Screenshots als JPEG (ohne Transparenz). Reihenfolge = Dateinummer (01 Start … 08 Lehrkraftbereich). Die Videos sind echte Aufnahmen aus der App (Startbildschirm mit allen neun Themen, dann „Computer & Hardware“: Geräte sortieren mit Info-Karte und PC bauen bis zum Ergebnis) mit einer stummen Tonspur; ein Titelbild bei Sekunde 5 schlägt App Store Connect selbst vor.
