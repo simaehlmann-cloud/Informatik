@@ -26,7 +26,7 @@ jobs:
       - name: Rechtstexte aktuell?
         run: |
           python3 tools/make-legal.py
-          git diff --exit-code www/*.html || { echo "::error::Rechtstexte veraltet – 'python3 tools/make-legal.py' ausführen und einchecken"; exit 1; }
+          git diff --exit-code www/*.html docs/ || { echo "::error::Rechtstexte veraltet – 'python3 tools/make-legal.py' ausführen und einchecken"; exit 1; }
       - name: Ablauftest im Browser (alle Stationen, Stufen, Profile, Schule)
         run: |
           pip install playwright
