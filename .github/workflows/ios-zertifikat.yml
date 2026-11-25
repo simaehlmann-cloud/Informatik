@@ -40,7 +40,7 @@ jobs:
         run: |
           cd "$RUNNER_TEMP"
           openssl genrsa -out dist.key 2048 2>/dev/null
-          openssl req -new -key dist.key -subj "/CN=Bit für Bit Distribution/C=DE" -out dist.csr
+          openssl req -new -key dist.key -subj "/CN=Bit fuer Bit Distribution/C=DE" -out dist.csr
           echo "Zertifikatsanfrage erstellt."
 
       - name: Zertifikat bei Apple anlegen
@@ -85,7 +85,7 @@ jobs:
           openssl x509 -inform DER -in dist.cer -out dist.pem
           # Klassische Verschluesselung, damit die macOS-Schluesselbundverwaltung
           # die Datei sicher lesen kann.
-          openssl pkcs12 -export -inkey dist.key -in dist.pem -name "Bit für Bit Distribution" \
+          openssl pkcs12 -export -inkey dist.key -in dist.pem -name "Bit fuer Bit Distribution" \
             -keypbe PBE-SHA1-3DES -certpbe PBE-SHA1-3DES -macalg sha1 \
             -passout env:PW -out dist.p12
           openssl pkcs12 -in dist.p12 -passin env:PW -nokeys -noout -legacy 2>/dev/null \
