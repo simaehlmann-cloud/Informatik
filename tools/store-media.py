@@ -21,23 +21,23 @@ DEVICES = {
 
 TEXT = {
     "de": {
-        "home":    ("Informatik lernen –\nBit für Bit", "36 Stationen in 9 Themen.\nAuch ohne Computerraum."),
+        "home":    ("Informatik lernen –\nBit für Bit", "108 Lerneinheiten in 9 Themen.\nAuch ohne Computerraum."),
         "pc":      ("Einen PC bauen,\nder wirklich startet", "Bauteile einsetzen, einschalten –\nund Fehler selbst finden."),
         "sort":    ("Sortieren, tippen,\nverstehen", "Jedes Gerät wird per Info-Karte erklärt."),
         "pw":      ("Sichere Passwörter\nRegel für Regel", "Wie ein Spiel – mit jeder Regel\nwird es kniffliger."),
         "caesar":  ("Geheimschriften\nknacken", "Caesar-Scheibe, Häufigkeiten\nund Vigenère."),
         "maze":    ("Programmieren\nmit Blöcken", "Den Roboter Schritt für Schritt\ndurchs Labyrinth steuern."),
-        "levels":  ("Drei Stufen –\nfür alle machbar", "Einsteiger, Fortgeschritten, Profi.\nMit Tipps und Merkkästen."),
+        "levels":  ("Drei Stufen –\nfür alle machbar", "36 Stationen × 3 Stufen,\nbeliebig oft wiederholbar."),
         "teacher": ("Fortschritt per\nQR-Code einsammeln", "Klassenübersicht für Lehrkräfte –\nohne Internet, ohne Konten."),
     },
     "en": {
-        "home":    ("Computer science,\nbit by bit", "36 stations in 9 topics.\nNo computer room needed."),
+        "home":    ("Computer science,\nbit by bit", "108 learning units in 9 topics.\nNo computer room needed."),
         "pc":      ("Build a PC\nthat really starts", "Fit the parts, switch it on –\nand find faults yourself."),
         "sort":    ("Sort, tap,\nunderstand", "Every device explained\non an info card."),
         "pw":      ("Secure passwords,\nrule by rule", "Like a game – every rule\nmakes it trickier."),
         "caesar":  ("Crack\nsecret codes", "Caesar wheel, letter frequencies\nand Vigenère."),
         "maze":    ("Coding\nwith blocks", "Steer the robot through the maze\nstep by step."),
-        "levels":  ("Three levels\nfor everyone", "Beginner, Advanced, Expert.\nWith tips and summary boxes."),
+        "levels":  ("Three levels\nfor everyone", "36 stations × 3 levels,\nrepeat as often as you like."),
         "teacher": ("Collect progress\nby QR code", "Class overview for teachers –\nno internet, no accounts."),
     },
 }
@@ -256,8 +256,9 @@ def tap(page, sel, wait=350):
     page.wait_for_timeout(wait)
 
 
-def drag(page, src, dst, wait=400):
-    x1, y1 = center(page, src); x2, y2 = center(page, dst)
+def drag(page, src, dst, wait=400, lift=0):
+    """Zieht src auf dst. lift: so weit schwebt das gezogene Teil über dem Finger (wie in der App)."""
+    x1, y1 = center(page, src); x2, y2 = center(page, dst); y2 += lift
     page.mouse.move(x1, y1, steps=12); page.wait_for_timeout(120)
     page.mouse.down(); page.mouse.move(x1 + 6, y1 + 6, steps=3)
     page.mouse.move(x2, y2, steps=26); page.wait_for_timeout(100)
@@ -287,20 +288,20 @@ def scroll(page, to, ms):
 
 def script(page, lang):
     """Ablauf der Vorschau (~27 s): Startbildschirm mit allen Themen, dann zwei Stationen aus „Computer & Hardware“."""
-    hold(page, 1100)                                           # Startbildschirm
-    scroll(page, "end", 3700); hold(page, 400)                 # alle neun Themen
-    scroll(page, 0, 1000); hold(page, 200)
+    hold(page, 900)                                            # Startbildschirm
+    scroll(page, "end", 3100); hold(page, 300)                 # alle neun Themen
+    scroll(page, 0, 900); hold(page, 150)
     tap(page, ".ch-card >> nth=0", 900)                       # Computer & Hardware
     tap(page, ".st-row >> nth=0", 900)                         # Station 1: Eingabe oder Ausgabe?
     for k in range(2):                                         # zwei Geräte einsortieren
         if k == 1:
-            tap(page, ".sort-card .info-btn", 1300)            # i-Karte lesen
+            tap(page, ".sort-card .info-btn", 1150)            # i-Karte lesen
             tap(page, ".sheet-card .icon-btn", 400)
         b = page.evaluate("""() => {
           const st = resolveStation(CHAPTERS.flatMap(c => c.stations).find(s => s.id === 'hw-io'), Store.level());
           const lbl = document.querySelector('.sort-card').getAttribute('aria-label');
           return st.items.find(it => itemText(it) === lbl).b; }""")
-        tap(page, f".bucket[data-b='{b}']", 900)
+        drag(page, ".sort-card", f".bucket[data-b='{b}']", 750, lift=26)
         tap(page, "#fb-btn", 500)
     back = page.evaluate("t('backToChapter')")
     tap(page, f".stage-head [aria-label='{back}'], [aria-label='{back}']", 900)   # zurück zum Thema
@@ -320,13 +321,13 @@ def script(page, lang):
         if not nxt: break
         sid, key = nxt
         page.locator(f".pc-part[data-key='{key}']").first.scroll_into_view_if_needed()
-        drag(page, f".pc-part[data-key='{key}']", f".slot[data-slot='{sid}']", 450)
+        drag(page, f".pc-part[data-key='{key}']", f".slot[data-slot='{sid}']", 450, lift=56)
     page.evaluate("window.__hideFinger()")
     page.evaluate("window.__test.solve()"); hold(page, 1400)  # Rest einsetzen, einschalten, läuft
-    page.wait_for_selector("#fb.show", timeout=8000); hold(page, 800)
+    page.wait_for_selector("#fb.show", timeout=8000); hold(page, 600)
     tap(page, "#fb-btn", 300)                                  # Ergebnis mit Sternen
     page.evaluate("window.__hideFinger()")
-    hold(page, 1700)
+    hold(page, 1500)
 
 
 def video(lang, kind, browser):

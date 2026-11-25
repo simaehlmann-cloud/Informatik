@@ -103,7 +103,11 @@ GAMES.pcbuild = function (host, st, api) {
   caseEl.append(fan, led);
   // Ziehen eines Bauteils auf einen Steckplatz
   function enableDrag(card, p) {
-    let start = null, drag = false, ghost = null;
+    // Das Bauteil schwebt über dem Finger; der Steckplatz darunter leuchtet (verrät nicht, ob es passt)
+    const LIFT = 56;
+    let start = null, drag = false, ghost = null, over = null;
+    const slotAt = (x, y) => { const el = document.elementsFromPoint(x, y - LIFT).find(x => x.classList && x.classList.contains('slot') && caseEl.contains(x)); return el || null; };
+    const setOver = el => { if (el === over) return; if (over) over.classList.remove('target'); over = el; if (over) over.classList.add('target'); };
     card.addEventListener('pointerdown', e => { if (busy || e.target.closest('.info-btn')) return; start = { x: e.clientX, y: e.clientY }; drag = false; try { card.setPointerCapture(e.pointerId); } catch (err) { /* egal */ } });
     card.addEventListener('pointermove', e => {
       if (!start) return;
@@ -112,20 +116,21 @@ GAMES.pcbuild = function (host, st, api) {
         ghost = h('div', { class: 'pc-ghost' }, svg(partSvg(p)));
         document.body.append(ghost);
       }
-      if (drag) { ghost.style.left = e.clientX + 'px'; ghost.style.top = e.clientY + 'px'; }
+      if (drag) { ghost.style.left = e.clientX + 'px'; ghost.style.top = (e.clientY - LIFT) + 'px'; setOver(slotAt(e.clientX, e.clientY)); }
     });
     const end = e => {
       if (!start) return;
       const was = drag; start = null; drag = false;
       if (ghost) { ghost.remove(); ghost = null; }
+      setOver(null);
       if (!was) return;
       card.dataset.dragged = '1'; setTimeout(() => { delete card.dataset.dragged; }, 50);
-      const slotEl = document.elementsFromPoint(e.clientX, e.clientY).find(x => x.classList && x.classList.contains('slot') && caseEl.contains(x));
+      const slotEl = slotAt(e.clientX, e.clientY);
       const s = slotEl && slots.find(x => x.id === slotEl.dataset.slot);
       if (s) place(p, s); else { selected = null; drawSlots(); drawTray(); }
     };
     card.addEventListener('pointerup', end);
-    card.addEventListener('pointercancel', () => { start = null; drag = false; if (ghost) { ghost.remove(); ghost = null; } });
+    card.addEventListener('pointercancel', () => { start = null; drag = false; setOver(null); if (ghost) { ghost.remove(); ghost = null; } });
     card.addEventListener('click', e => { if (card.dataset.dragged) e.stopImmediatePropagation(); }, true);
   }
 

@@ -36,17 +36,17 @@ CHAPTERS.unshift({
       hint: T('Kommt etwas in den Computer hinein (Eingabe) oder kommt etwas heraus (Ausgabe)?', 'Does something go into the computer (input) or come out of it (output)?'),
       buckets: [{ id: 'e', t: T('Eingabe', 'Input'), sub: T('hinein in den PC', 'into the PC') }, { id: 'a', t: T('Ausgabe', 'Output'), sub: T('heraus aus dem PC', 'out of the PC') }, { id: 'b', t: T('Beides', 'Both'), sub: T('hinein und heraus', 'in and out') }],
       items: [
-        HW_ITEM('keyboard', 'e', 'Mit der Tastatur gibst du etwas ein.', 'You type things in with the keyboard.'),
-        HW_ITEM('mouse', 'e', 'Die Maus gibt Bewegungen und Klicks ein.', 'The mouse inputs movements and clicks.'),
-        HW_ITEM('scanner', 'e', 'Der Scanner bringt ein Blatt als Bild in den Computer.', 'The scanner brings a sheet into the computer as a picture.'),
-        HW_ITEM('mic', 'e', 'Das Mikrofon nimmt Töne auf – Eingabe.', 'The microphone records sound – input.'),
-        HW_ITEM('webcam', 'e', 'Die Webcam liefert Bilder an den Computer.', 'The webcam sends pictures to the computer.'),
-        HW_ITEM('printer', 'a', 'Der Drucker gibt Texte und Bilder auf Papier aus.', 'The printer outputs text and pictures on paper.'),
-        HW_ITEM('speaker', 'a', 'Lautsprecher geben Töne aus.', 'Speakers output sound.'),
-        HW_ITEM('monitor', 'a', 'Der Bildschirm zeigt die Ergebnisse an.', 'The monitor shows the results.'),
-        HW_ITEM('beamer', 'a', 'Der Beamer gibt das Bild groß an der Wand aus.', 'The projector outputs the picture large on the wall.'),
-        HW_ITEM('touch', 'b', 'Ein Touchscreen zeigt an und erkennt Berührungen – beides.', 'A touchscreen displays and detects touches – both.'),
-        HW_ITEM('headset', 'b', 'Kopfhörer geben aus, das Mikrofon nimmt auf – beides.', 'Headphones output, the microphone records – both.')
+        HW_ITEM('keyboard', 'e', 'Was du tippst, geht in den Computer hinein – die Tastatur ist ein Eingabegerät.', 'What you type goes into the computer – the keyboard is an input device.'),
+        HW_ITEM('mouse', 'e', 'Bewegungen und Klicks gehen in den Computer hinein – die Maus ist ein Eingabegerät.', 'Movements and clicks go into the computer – the mouse is an input device.'),
+        HW_ITEM('scanner', 'e', 'Das Bild vom Blatt geht in den Computer hinein – der Scanner ist ein Eingabegerät.', 'The picture of the sheet goes into the computer – the scanner is an input device.'),
+        HW_ITEM('mic', 'e', 'Töne und Sprache gehen in den Computer hinein – das Mikrofon ist ein Eingabegerät.', 'Sound and speech go into the computer – the microphone is an input device.'),
+        HW_ITEM('webcam', 'e', 'Die Bilder der Kamera gehen in den Computer hinein – die Webcam ist ein Eingabegerät.', 'The camera pictures go into the computer – the webcam is an input device.'),
+        HW_ITEM('printer', 'a', 'Texte und Bilder kommen aus dem Computer heraus aufs Papier – der Drucker ist ein Ausgabegerät.', 'Text and pictures come out of the computer onto paper – the printer is an output device.'),
+        HW_ITEM('speaker', 'a', 'Töne kommen aus dem Computer heraus – Lautsprecher sind Ausgabegeräte.', 'Sound comes out of the computer – speakers are output devices.'),
+        HW_ITEM('monitor', 'a', 'Das Bild kommt aus dem Computer heraus – der Bildschirm ist ein Ausgabegerät.', 'The picture comes out of the computer – the monitor is an output device.'),
+        HW_ITEM('beamer', 'a', 'Das Bild kommt aus dem Computer heraus an die Wand – der Beamer ist ein Ausgabegerät.', 'The picture comes out of the computer onto the wall – the projector is an output device.'),
+        HW_ITEM('touch', 'b', 'Er zeigt Bilder an (Ausgabe) und erkennt deine Berührungen (Eingabe) – der Touchscreen kann beides.', 'It shows pictures (output) and detects your touches (input) – the touchscreen does both.'),
+        HW_ITEM('headset', 'b', 'Die Kopfhörer geben Töne aus (Ausgabe), das Mikrofon nimmt deine Stimme auf (Eingabe) – das Headset kann beides.', 'The headphones output sound (output), the microphone records your voice (input) – the headset does both.')
       ],
       levels: {
         1: { buckets: [{ id: 'e', t: T('Eingabe', 'Input'), sub: T('hinein in den PC', 'into the PC') }, { id: 'a', t: T('Ausgabe', 'Output'), sub: T('heraus aus dem PC', 'out of the PC') }],

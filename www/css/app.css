@@ -476,7 +476,16 @@ details.more summary { cursor: pointer; font-weight: 700; color: var(--c); paddi
 .sort-card .info-btn { position: absolute; top: 8px; right: 8px; }
 .info-btn { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--card); color: var(--c); display: grid; place-items: center; padding: 0; }
 .info-btn svg { width: 22px; height: 22px; }
-.bucket.over { border-color: var(--c); background: color-mix(in srgb, var(--c) 22%, var(--card)); transform: scale(1.03); }
+.bucket { transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease; }
+.bucket.over { border-color: var(--c); background: color-mix(in srgb, var(--c) 22%, var(--card)); transform: scale(1.05); }
+.bucket.colored { --c: var(--bc); border-color: color-mix(in srgb, var(--bc) 55%, var(--line)); background: color-mix(in srgb, var(--bc) 12%, var(--card)); }
+.bucket.colored:hover { border-color: var(--bc); }
+.bucket.colored.over { border-color: var(--bc); background: color-mix(in srgb, var(--bc) 26%, var(--card)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--bc) 30%, transparent); }
+.bucket .bk-ic { display: block; width: 26px; height: 26px; margin: 0 auto 4px; color: var(--bc); }
+.bucket .bk-ic svg { width: 100%; height: 100%; }
+.sort-card.dragging { transform-origin: center; border-color: var(--c); }
+.sort-card.dragging .info-btn { visibility: hidden; }
+.sort-card.snap { transition: transform .25s ease; }
 .drag-hint { text-align: center; color: var(--muted); font-size: .8rem; margin: -8px 0 12px; }
 .info-sheet .dev-big { width: 120px; height: 120px; margin: 0 auto 12px; color: var(--c); display: block; }
 .info-sheet .dev-big svg { width: 100%; height: 100%; }
@@ -496,6 +505,7 @@ details.more summary { cursor: pointer; font-weight: 700; color: var(--c); paddi
 .slot.filled { border-style: solid; border-color: rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .12); }
 .slot-board.filled { background: transparent; border-color: transparent; }
 .slot-board { z-index: 0; }
+.slot.target { border-style: solid; border-color: #fff; background: rgba(255, 255, 255, .22); box-shadow: 0 0 0 3px rgba(255, 255, 255, .35), 0 0 18px rgba(255, 255, 255, .45); }
 .slot.hint { border-color: #FFD43B; background: rgba(255, 212, 59, .18); animation: pulse 1s ease-in-out infinite; }
 .slot-cooler { z-index: 2; }
 .slot-lbl { font-size: .62rem; font-weight: 800; line-height: 1.1; text-align: center; color: rgba(255, 255, 255, .8); }

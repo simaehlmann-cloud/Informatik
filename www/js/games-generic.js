@@ -16,9 +16,10 @@ function renderBlocks(spec, opts = {}) {
 
 /** Name eines Eintrags: eigener Text oder Gerätename aus DEVICES */
 const itemText = it => (it.t != null ? L(it.t) : it.dev && DEVICES[it.dev] ? L(DEVICES[it.dev].n) : '');
-function openInfo(it) {
+/** i-Karte: vor der Antwort nur, was das Gerät tut; nach der richtigen Antwort auch die Einordnung (why) */
+function openInfo(it, solved) {
   const d = it.dev && DEVICES[it.dev];
-  const text = it.info ? L(it.info) : d ? L(d.i) : '';
+  const text = (it.info ? L(it.info) : d ? L(d.i) : '') + (solved && it.why ? ' ' + L(it.why) : '');
   openSheet(itemText(it), h('div', { class: 'info-sheet' },
     d ? h('span', { class: 'dev-big' }, svg(d.svg)) : null,
     h('p', null, text),
@@ -81,6 +82,29 @@ GAMES.quiz = function (host, st, api) {
 };
 
 /* ---------------- Sortieren in Fächer ---------------- */
+// Jede Kiste hat eine eigene Farbe und ein Symbol (Bedeutung nie nur über die Farbe)
+const BK_IC = {
+  in: '<path d="M3 12h11M10 8l4 4-4 4"/><rect x="15" y="4" width="6" height="16" rx="2"/>',
+  out: '<rect x="3" y="4" width="6" height="16" rx="2"/><path d="M10 12h11M17 8l4 4-4 4"/>',
+  both: '<path d="M4 9h14M14 5l4 4-4 4M20 15H6M10 11l-4 4 4 4"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+  disk: '<ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  box: '<rect x="3" y="3" width="18" height="18" rx="3"/><rect x="8" y="8" width="8" height="8" rx="1.5"/>',
+  plug: '<path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/>',
+  sys: '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9h10M7 12h6"/>',
+  app: '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  open: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/>',
+  person: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  noperson: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M3 3l18 18"/>'
+};
+const BK_STYLE = {
+  e: ['#2F6FDE', 'in'], a: ['#D9650B', 'out'], b: ['#8A4FD6', 'both'], v: ['#0E8F80', 'gear'], s: ['#A0457E', 'disk'],
+  in: ['#2F6FDE', 'box'], out: ['#D9650B', 'plug'], os: ['#0E8F80', 'sys'], app: ['#8A4FD6', 'app'],
+  good: ['#178A45', 'lock'], bad: ['#C23B2E', 'open'], yes: ['#8A4FD6', 'person'], no: ['#5F6B85', 'noperson']
+};
+const bucketStyle = bk => BK_STYLE[bk.id] || null;
+
 GAMES.sort = function (host, st, api) {
   const items = shuffle(st.items);
   let i = 0;
@@ -94,7 +118,7 @@ GAMES.sort = function (host, st, api) {
     const card = h('div', { class: 'sort-card' + (st.mono ? ' mono' : ''), role: 'group', 'aria-label': itemText(it) },
       d ? h('span', { class: 'dev' }, svg(d.svg)) : null,
       h('span', null, itemText(it)),
-      hasInfo(it) ? h('button', { class: 'info-btn', 'aria-label': t('moreInfo'), title: t('moreInfo'), onclick: e => { e.stopPropagation(); openInfo(it); } }, svg(ICONS.info)) : null);
+      hasInfo(it) ? h('button', { class: 'info-btn', 'aria-label': t('moreInfo'), title: t('moreInfo'), onclick: e => { e.stopPropagation(); openInfo(it, solved); } }, svg(ICONS.info)) : null);
     function choose(bid) {
       if (solved) return;
       if (bid === it.b) {
@@ -105,38 +129,53 @@ GAMES.sort = function (host, st, api) {
         api.bad(it.wrong ? L(it.wrong) : t('tryAgain'));
       }
     }
-    const buckets = h('div', { class: 'buckets' }, st.buckets.map(bk => h('button', {
-      class: 'bucket', 'data-b': bk.id, onclick: () => choose(bk.id)
-    }, L(bk.t), bk.sub ? h('small', null, L(bk.sub)) : null)));
+    const buckets = h('div', { class: 'buckets' }, st.buckets.map(bk => {
+      const bs = bucketStyle(bk);
+      return h('button', { class: 'bucket' + (bs ? ' colored' : ''), 'data-b': bk.id, style: bs ? { '--bc': bs[0] } : null, onclick: () => choose(bk.id) },
+        bs ? h('span', { class: 'bk-ic' }, svg('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + BK_IC[bs[1]] + '</svg>')) : null,
+        L(bk.t), bk.sub ? h('small', null, L(bk.sub)) : null);
+    }));
     // Ziehen mit Finger oder Maus
-    let start = null, dragging = false, over = null;
+    // Ziehen: Die Karte schrumpft und schwebt über dem Finger. Ihr unterer Rand zeigt auf die Kiste –
+    // so bleibt die Kiste mit ihrer Beschriftung sichtbar und leuchtet auf, bevor man loslässt.
+    const LIFT = 26, SMALL = d ? 0.4 : 0.6;
+    let start = null, dragging = false, over = null, home = null;
     const bucketAt = (x, y) => { const el = document.elementsFromPoint(x, y).find(e => e.classList && e.classList.contains('bucket')); return el && buckets.contains(el) ? el : null; };
+    const target = e => [e.clientX, e.clientY - LIFT];
+    const setOver = b => {
+      if (b === over) return;
+      if (over) over.classList.remove('over');
+      over = b;
+      if (over) { over.classList.add('over'); try { navigator.vibrate && navigator.vibrate(8); } catch (err) { /* egal */ } }
+    };
+    const reset = animate => {
+      start = null; dragging = false; setOver(null);
+      card.classList.remove('dragging');
+      if (animate) { card.classList.add('snap'); setTimeout(() => card.classList.remove('snap'), 260); }
+      card.style.transform = '';
+    };
     card.addEventListener('pointerdown', e => {
       if (solved || e.target.closest('.info-btn')) return;
+      const r = card.getBoundingClientRect();
+      home = { x: r.left + r.width / 2, y: r.top + r.height / 2, h: r.height };
       start = { x: e.clientX, y: e.clientY }; dragging = false;
       try { card.setPointerCapture(e.pointerId); } catch (err) { /* egal */ }
     });
     card.addEventListener('pointermove', e => {
       if (!start) return;
-      const dx = e.clientX - start.x, dy = e.clientY - start.y;
-      if (!dragging && Math.hypot(dx, dy) > 6) { dragging = true; card.classList.add('dragging'); }
+      if (!dragging && Math.hypot(e.clientX - start.x, e.clientY - start.y) > 6) { dragging = true; card.classList.add('dragging'); }
       if (!dragging) return;
-      card.style.transform = `translate(${dx}px, ${dy}px) rotate(${Math.max(-6, Math.min(6, dx / 25))}deg)`;
-      const b = bucketAt(e.clientX, e.clientY);
-      if (b !== over) { if (over) over.classList.remove('over'); over = b; if (over) over.classList.add('over'); }
+      const [tx, ty] = target(e);
+      card.style.transform = `translate(${tx - home.x}px, ${ty - home.h * SMALL / 2 - 4 - home.y}px) scale(${SMALL})`;
+      setOver(bucketAt(tx, ty));
     });
-    const end = e => {
+    card.addEventListener('pointerup', e => {
       if (!start) return;
-      const wasDrag = dragging;
-      start = null; dragging = false;
-      card.classList.remove('dragging'); card.style.transform = '';
-      if (over) over.classList.remove('over');
-      const b = wasDrag ? bucketAt(e.clientX, e.clientY) : null;
-      over = null;
+      const wasDrag = dragging, b = wasDrag ? bucketAt(...target(e)) : null;
+      reset(wasDrag && !b);
       if (b) choose(b.dataset.b);
-    };
-    card.addEventListener('pointerup', end);
-    card.addEventListener('pointercancel', () => { start = null; dragging = false; card.classList.remove('dragging'); card.style.transform = ''; if (over) over.classList.remove('over'); over = null; });
+    });
+    card.addEventListener('pointercancel', () => reset(true));
     fill(host, h('p', { class: 'task' }, L(st.task)), card,
       h('p', { class: 'drag-hint' }, t('dragHint')), buckets,
       h('div', { class: 'count-note' }, t('cardOf', { n: i + 1, m: items.length })));

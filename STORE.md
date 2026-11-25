@@ -32,14 +32,14 @@ Informatik üben in Klasse 9/10
 
 **Werbetext** (170)
 ```
-36 kurze Stationen zum Selbstlernen: PC bauen, Passwörter knacken, Caesar entschlüsseln, Formeln rechnen. In drei Stufen – auch ohne Computerraum und ohne Internet.
+108 Lerneinheiten in 9 Themen: PC bauen, Passwörter knacken, Caesar entschlüsseln, Formeln rechnen. In drei Stufen – auch ohne Computerraum und ohne Internet.
 ```
 
 **Beschreibung** (4000)
 ```
 Der Computerraum ist belegt? Mit Bit für Bit lernen Schülerinnen und Schüler der Jahrgänge 9 und 10 Informatik trotzdem – selbstständig, spielerisch und in kleinen Schritten.
 
-NEUN THEMEN, 36 STATIONEN
+NEUN THEMEN, 36 STATIONEN, 108 LERNEINHEITEN
 • Computer & Hardware: Eingabe- und Ausgabegeräte sortieren, einen PC zusammenbauen, der wirklich startet, Fehler finden, SSD und Festplatte vergleichen
 • Tabellenkalkulation: Zellbezüge, Formeln, Filtern und Sortieren, absolute Bezüge, das passende Diagramm
 • Sichere Passwörter: ein Passwort Regel für Regel bauen, Knack-Zeiten schätzen, Mythen prüfen
@@ -50,10 +50,11 @@ NEUN THEMEN, 36 STATIONEN
 • Wie das Internet funktioniert: Rollen im Netz, Paketreise, Netz-Quiz
 • Daten & Recht: Phishing erkennen, persönliche Daten, eigene Rechte
 
-Jede Station dauert nur wenige Minuten. Merkkästen fassen das Wichtigste zusammen, Tipps helfen weiter, und für jede Station gibt es bis zu drei Sterne.
+Jede Station dauert nur wenige Minuten. Merkkästen fassen das Wichtigste zusammen, Tipps helfen weiter, und für jede Station gibt es bis zu drei Sterne. Geräte und Bauteile erklären Info-Karten – die Einordnung finden die Lernenden selbst heraus.
 
 DREI STUFEN
-„Einsteiger“ geht in kleinen Schritten, mit einfacher Sprache und kostenlosen Tipps – auch für schwächere Lernende gut machbar. „Fortgeschritten“ ist der Standard, „Profi“ bietet kniffligere Aufgaben. So passt die App zu allen Schulformen.
+Jede Station gibt es in drei Stufen mit eigenen Aufgaben – zusammen 108 Lerneinheiten. „Einsteiger“ geht in kleinen Schritten, mit einfacher Sprache und kostenlosen Tipps – auch für schwächere Lernende gut machbar. „Fortgeschritten“ ist der Standard, „Profi“ bietet kniffligere Aufgaben. So passt die App zu allen Schulformen.
+Alle Lerneinheiten lassen sich beliebig oft wiederholen: Reihenfolge und Antworten werden neu gemischt, und die Sterne lassen sich verbessern.
 
 DREI ARTEN DER NUTZUNG
 • Einfach loslegen: ohne Profile und ohne Passwörter.
@@ -79,7 +80,7 @@ Schule,lernen,Hardware,Passwort,Verschlüsselung,Caesar,binär,Tabellenkalkulati
 
 **Neuerungen** (Version 0.4 / erste Veröffentlichung)
 ```
-Die erste Version von Bit für Bit: 36 Stationen in neun Themen, drei Stufen, Profile mit sicheren Passwörtern und ein Bereich für Eltern und Lehrkräfte.
+Die erste Version von Bit für Bit: 108 Lerneinheiten (36 Stationen in drei Stufen) in neun Themen, Profile mit sicheren Passwörtern und ein Bereich für Eltern und Lehrkräfte.
 ```
 
 ---
@@ -98,14 +99,14 @@ Practise CS in years 9 and 10
 
 **Werbetext** (170)
 ```
-36 short stations for self-study: build a PC, crack passwords, decode Caesar, work with formulas. Three levels – no computer room or internet needed.
+108 learning units in 9 topics: build a PC, crack passwords, decode Caesar, work with formulas. Three levels – no computer room or internet needed.
 ```
 
 **Beschreibung** (4000)
 ```
 The computer room is busy? With Bit für Bit, students in years 9 and 10 can still learn computer science – on their own, playfully and in small steps.
 
-NINE TOPICS, 36 STATIONS
+NINE TOPICS, 36 STATIONS, 108 LEARNING UNITS
 • Computers & hardware: sort input and output devices, build a PC that really starts, find faults, compare SSD and hard drive
 • Spreadsheets: cell references, formulas, filtering and sorting, absolute references, the right chart
 • Secure passwords: build a password rule by rule, estimate cracking times, check myths
@@ -116,10 +117,11 @@ NINE TOPICS, 36 STATIONS
 • How the internet works: roles in the network, a packet’s journey, network quiz
 • Data & law: spotting phishing, personal data, your rights
 
-Each station takes only a few minutes. Summary boxes sum up the key points, tips help when stuck, and every station awards up to three stars.
+Each station takes only a few minutes. Summary boxes sum up the key points, tips help when stuck, and every station awards up to three stars. Info cards explain devices and parts – students work out where they belong themselves.
 
 THREE LEVELS
-“Beginner” goes in small steps with simple language and free tips. “Advanced” is the standard, “Expert” offers trickier tasks – so the app suits every type of school.
+Every station comes in three levels with their own tasks – 108 learning units in total. “Beginner” goes in small steps with simple language and free tips. “Advanced” is the standard, “Expert” offers trickier tasks – so the app suits every type of school.
+All learning units can be repeated as often as you like: order and answers are shuffled again, and stars can be improved.
 
 THREE WAYS TO USE IT
 • Just start: no profiles, no passwords.
@@ -142,7 +144,7 @@ school,learning,hardware,password,encryption,Caesar,binary,spreadsheet,coding,IC
 
 **Neuerungen**
 ```
-The first version of Bit für Bit: 36 stations in nine topics, three levels, profiles with secure passwords and an area for parents and teachers.
+The first version of Bit für Bit: 108 learning units (36 stations on three levels) in nine topics, profiles with secure passwords and an area for parents and teachers.
 ```
 
 ---
@@ -173,4 +175,4 @@ Erzeugt mit `python3 tools/store-media.py shots` bzw. `videos` (Server auf Port 
 | `previews/<de|en>/vorschau-iphone-*.mp4` | 886 × 1920, ca. 29 s | App-Vorschau iPhone 6,9" (gilt auch für 6,3") |
 | `previews/<de|en>/vorschau-ipad-*.mp4` | 1200 × 1600, ca. 29 s | App-Vorschau iPad 13" |
 
-Screenshots als JPEG (ohne Transparenz). Reihenfolge = Dateinummer (01 Start … 08 Lehrkraftbereich). Die Videos sind echte Aufnahmen aus der App (Startbildschirm mit allen neun Themen, dann „Computer & Hardware“: Geräte sortieren mit Info-Karte und PC bauen bis zum Ergebnis) mit einer stummen Tonspur; ein Titelbild bei Sekunde 5 schlägt App Store Connect selbst vor.
+Screenshots als JPEG (ohne Transparenz). Reihenfolge = Dateinummer (01 Start … 08 Lehrkraftbereich). Die Videos sind echte Aufnahmen aus der App (Startbildschirm mit allen neun Themen, dann „Computer & Hardware“: Geräte in farbige Kisten ziehen, Info-Karte, PC bauen bis zum Ergebnis) mit einer stummen Tonspur; ein Titelbild bei Sekunde 5 schlägt App Store Connect selbst vor.
