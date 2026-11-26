@@ -1,7 +1,7 @@
 {
   "name": "informatik-werkstatt",
   "private": true,
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Bit für Bit – Selbstlern-App für Informatik in den Jahrgängen 9 und 10 (Niedersachsen).",
   "scripts": {
     "native": "esbuild native/bridge.js --bundle --format=iife --minify --target=safari15 --outfile=www/vendor/native.js",

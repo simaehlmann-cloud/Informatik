@@ -57,9 +57,19 @@ Jede Station gibt es in drei Stufen mit eigenen Aufgaben – zusammen 108 Lernei
 Alle Lerneinheiten lassen sich beliebig oft wiederholen: Reihenfolge und Antworten werden neu gemischt, und die Sterne lassen sich verbessern.
 
 DREI ARTEN DER NUTZUNG
-• Einfach loslegen: ohne Profile und ohne Passwörter.
-• Zuhause: Profile für mehrere Kinder, Eltern sehen den Fortschritt.
-• Schule: Klassen anlegen, Ergebnisse per QR-Code von den Geräten der Schülerinnen und Schüler einsammeln, Übersicht als Heatmap und CSV-Export.
+• Einfach loslegen: ohne Profile und ohne Passwörter – sofort üben.
+• Zuhause: ein Profil pro Kind, auch mehrere Kinder an einem Gerät. Im Elternbereich sehen Sie den Fortschritt jedes Kindes und können Passwörter zurücksetzen.
+• Schule: Mehrere Kinder können sich ein Gerät teilen, und die Ergebnisse beliebig vieler Geräte lassen sich einsammeln.
+Die Nutzungsart lässt sich jederzeit in den Einstellungen ändern.
+
+SO LÄUFT ES IN DER KLASSE
+1. Die Lehrkraft legt im Lehrkraftbereich eine Klasse an und zeigt den Klassen-Code.
+2. Die Schülerinnen und Schüler legen ihr Profil an und treten der Klasse per Scan bei.
+3. Sie üben in ihrem Tempo und auf ihrer Stufe.
+4. Zur Abgabe zeigen sie ihren Abgabe-Code – teilen sich mehrere ein Gerät, wechseln die Codes aller Profile automatisch.
+5. Die Lehrkraft scannt die Codes nacheinander mit der Kamera ein und sieht danach jedes Kind und jedes Thema auf einen Blick: wie viele Sterne, wo es hakt, welche Stationen der Klasse schwerfallen – auch als CSV-Datei.
+Alles läuft ohne Internet und ohne Konten, direkt von Bildschirm zu Kamera. Ohne Kamera lassen sich die Codes auch als Text weitergeben.
+
 Jedes Profil schützt ein eigenes Passwort – und das muss sicher sein. Die Regeln dazu lernen die Kinder im Baustein „Sichere Passwörter“.
 
 DATENSCHUTZ
@@ -124,9 +134,19 @@ Every station comes in three levels with their own tasks – 108 learning units 
 All learning units can be repeated as often as you like: order and answers are shuffled again, and stars can be improved.
 
 THREE WAYS TO USE IT
-• Just start: no profiles, no passwords.
-• At home: profiles for several children, parents see the progress.
-• At school: create classes, collect results from students’ devices by QR code, overview as a heat map and CSV export.
+• Just start: no profiles, no passwords – practise right away.
+• At home: one profile per child, also several children on one device. In the parent area you see each child’s progress and can reset passwords.
+• At school: several students can share a device, and results from any number of devices can be collected.
+You can change how the app is used at any time in the settings.
+
+HOW IT WORKS IN CLASS
+1. The teacher creates a class in the teacher area and shows the class code.
+2. Students create their profile and join the class by scanning.
+3. They practise at their own pace and level.
+4. To hand in, they show their hand-in code – if several share a device, the codes of all profiles change automatically.
+5. The teacher scans the codes one after another with the camera and then sees every student and every topic at a glance: stars, where they get stuck, which stations the class finds hard – also as a CSV file.
+Everything works without internet or accounts, directly from screen to camera. Without a camera the codes can also be passed on as text.
+
 Every profile is protected by its own password – and it has to be a secure one. Students learn the rules in the “Secure passwords” topic.
 
 PRIVACY

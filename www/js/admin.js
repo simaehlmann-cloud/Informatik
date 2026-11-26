@@ -39,9 +39,17 @@ function wipeAll() {
 }
 
 /* ---------------- Übersicht ---------------- */
+let focusUseMode = false; // aus Einstellungen → Nutzungsart → Ändern: im Bereich direkt zur Nutzungsart springen
 function adminView() {
   if (!adminOpen()) return adminGate();
   adminUntil = Date.now() + ADMIN_MS;
+  // Wer den Eltern-/Lehrkraftbereich öffnet, meldet das Kinderprofil auf diesem Gerät ab –
+  // nach „Sperren & zurück“ erscheint die Profilübersicht, und das Gerät kann weitergegeben werden.
+  if (!Store.isFree() && Store.current()) Store.logout();
+  if (focusUseMode) {
+    focusUseMode = false;
+    setTimeout(() => { const el = document.getElementById('adm-mode'); if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); el.classList.add('flash'); } }, 80);
+  }
   Store.purgeExpired();
   const school = Store.get('mode') === 'school';
   const profs = Store.profiles();
@@ -69,7 +77,7 @@ function adminView() {
         : h('p', { class: 'sub' }, t('noClasses'))) : null,
     h('section', { class: 'adm-sec' }, h('div', { class: 'adm-sec-h' }, h('h2', null, t('profilesHere'))), profCards),
     h('section', { class: 'adm-sec' }, h('h2', null, t('settings')),
-      h('div', { class: 'setting' }, h('span', null, t('useMode')), h('div', { class: 'seg-ctl' },
+      h('div', { class: 'setting', id: 'adm-mode' }, h('span', null, t('useMode')), h('div', { class: 'seg-ctl' },
         ['free', 'home', 'school'].map(m => h('button', { 'aria-pressed': String(Store.get('mode') === m), 'data-mode': m, onclick: () => switchMode(m) }, t(m === 'free' ? 'modeFreeShort' : m === 'home' ? 'modeHome' : 'modeSchool'))))),
       h('p', { class: 'sub' }, t('useModeInfo')),
       !Store.isFree() ? h('div', { class: 'setting' }, h('span', null, h('b', null, t('guestAllow')), h('small', { class: 'sub', style: { display: 'block', margin: 0 } }, t('guestAllowSub'))),

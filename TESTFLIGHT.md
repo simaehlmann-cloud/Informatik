@@ -8,7 +8,7 @@ Gebaut wird auf einem Mac von GitHub (kein eigener Mac nötig), genauso wie bei 
 | Name auf dem Home-Bildschirm | Bit für Bit |
 | App-Kennung (Bundle-ID) | `de.maehlmann.informatikwerkstatt`, lässt sich später nicht mehr ändern |
 | Geräte | iPhone und iPad, ab iOS 15 |
-| Version / Build | aus `package.json` (0.4.0) → Build `400.<Laufnummer>` |
+| Version / Build | aus `package.json` (1.0.0) → Build `100.<Laufnummer>` |
 | Verkauf | Einmalkauf, keine In-App-Käufe (passt zu Apple School Manager mit Bildungsrabatt) |
 
 ## Einmalig

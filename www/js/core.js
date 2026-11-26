@@ -3,7 +3,7 @@
 
 const APP = {
   name: 'Bit für Bit',
-  version: '0.4.0',
+  version: '1.0.0',
   mail: 'smaehlmann.appdev@gmail.com'
 };
 

@@ -96,7 +96,7 @@ function homeView() {
     h('section', { class: 'hero' },
       h('div', { class: 'hero-deco', 'aria-hidden': 'true' }, '01001001 01001110\n01000110 01001111\nif (x > 3) { … }\n=SUMME(B2:B6)\nKHOOR ZHOW\n#4255E8'),
       h('h1', null, t('heroTitle')),
-      h('p', null, t('heroText')),
+      h('p', null, t('heroText', { u: unitCount(), k: CHAPTERS.length })),
       h('div', { class: 'hero-progress' },
         h('div', { class: 'hero-bar' }, h('i', { style: { width: (total ? 100 * done / total : 0) + '%' } })),
         h('span', null, t('progressAll', { n: done, m: total })))),
@@ -290,10 +290,12 @@ function openSettings() {
     h('div', { class: 'setting' }, h('span', null, t('sound')), sw('sound')),
     Store.current() ? h('div', { class: 'setting' }, h('span', null, t('progress')), h('button', { class: 'btn', onclick: () =>
       confirmSheet(t('resetTitle'), t('resetText'), t('reset'), () => { Store.resetProgress(); render(); toast(t('resetDone')); }) }, t('reset'))) : null,
-    // Ohne Profile: Bereich öffnen, falls schon einmal eingerichtet, sonst Profile einrichten
+    // Nutzungsart: zeigt die aktive Art; „Ändern“ führt ohne Bereich zur Einrichtung, sonst (passwortgeschützt) in den Bereich
+    Store.get('mode') ? h('div', { class: 'setting', id: 'use-mode' },
+      h('span', null, h('b', null, t('useModeTitle')), h('small', { class: 'sub', style: { display: 'block', margin: 0 } },
+        t(Store.isFree() ? 'modeFreeShort' : Store.get('mode') === 'home' ? 'modeHome' : 'modeSchool'))),
+      h('a', { class: 'btn', id: 'change-mode', href: Store.get('admin') ? '#/admin' : '#/setup', onclick: () => { if (Store.get('admin')) focusUseMode = true; closeSheet(); } }, t('change'))) : null,
     Store.get('mode') && Store.get('admin') ? h('div', { class: 'setting' }, h('span', null, adminTitle()), h('a', { class: 'btn', id: 'open-admin', href: '#/admin', onclick: () => closeSheet() }, t('open'))) : null,
-    Store.isFree() && !Store.get('admin') ? h('div', { class: 'setting' }, h('span', null, h('b', null, t('setupProfiles')), h('small', { class: 'sub', style: { display: 'block', margin: 0 } }, t('setupProfilesSub'))),
-      h('a', { class: 'btn', id: 'setup-profiles', href: '#/setup', onclick: () => closeSheet() }, t('setupStart'))) : null,
     h('div', { class: 'btn-row' },
       h('button', { class: 'btn ghost', onclick: openAbout }, t('about')),
       h('a', { class: 'btn ghost', href: legalHref('datenschutz') }, t('privacy')),
@@ -307,12 +309,23 @@ function feedbackHref() {
   const info = `${APP.name} ${APP.version} · ${LANG} · ${navigator.userAgent}`;
   return `mailto:${APP.mail}?subject=${encodeURIComponent(t('feedbackSubject', { app: APP.name }))}&body=${encodeURIComponent(t('feedbackBody', { info }))}`;
 }
+/** Lerneinheiten = Stationen × drei Stufen (jede Stufe hat eigene Aufgaben; validate.js prüft das) */
+const stationCount = () => CHAPTERS.reduce((n, c) => n + c.stations.length, 0);
+const unitCount = () => stationCount() * 3;
+/** Text mit führendem <b>…</b> (nur eigene Übersetzungstexte) als fett gesetzten Anfang darstellen */
+const boldLead = s => { const m = /^<b>(.*?)<\/b>\s*(.*)$/.exec(s); return m ? [h('b', null, m[1]), ' ' + m[2]] : s; };
 function openAbout() {
-  const count = CHAPTERS.reduce((n, c) => n + c.stations.length, 0);
+  const count = stationCount();
   openSheet(t('about'), h('div', { class: 'about' },
-    h('p', null, t('aboutText', { n: count, k: CHAPTERS.length })),
-    h('p', null, t('aboutStars')),
+    h('p', null, t('aboutText', { u: unitCount(), n: count, k: CHAPTERS.length })),
     h('p', null, t('aboutLevels')),
+    h('p', null, t('aboutStars')),
+    h('h3', null, t('howTitle')),
+    h('p', null, boldLead(t('howFree'))),
+    h('p', null, boldLead(t('howHome'))),
+    h('p', null, boldLead(t('howSchool'))),
+    h('ol', { class: 'how-steps' }, ['howS1', 'howS2', 'howS3', 'howS4', 'howS5'].map(k => h('li', null, t(k)))),
+    h('p', { class: 'sub' }, t('howDevices')),
     h('p', null, t('privacyLong')),
     h('h3', null, t('forTeachers')),
     h('p', null, t('teacherText')),

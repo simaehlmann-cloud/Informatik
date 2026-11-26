@@ -263,34 +263,76 @@ LINKS = {
 SUPPORT_DE = f"""
   <h1>{APP} – Informatik</h1>
   <p class="stand">Hilfe und Kontakt · {STAND_DE}</p>
-  <p>{APP} ist eine Lern-App für Informatik in den Jahrgängen 9 und 10: 36 kurze Stationen in neun Themen (Computer &amp; Hardware, Tabellenkalkulation, sichere Passwörter, Blockprogrammierung, Verschlüsselung, Mikrocontroller, Daten codieren, Internet, Daten &amp; Recht), jeweils in drei Stufen. Sie funktioniert ohne Internet, ohne Werbung und ohne Konten beim Anbieter.</p>
+  <p>{APP} ist eine Lern-App für Informatik in den Jahrgängen 9 und 10: 108 Lerneinheiten – 36 kurze Stationen in neun Themen (Computer &amp; Hardware, Tabellenkalkulation, sichere Passwörter, Blockprogrammierung, Verschlüsselung, Mikrocontroller, Daten codieren, Internet, Daten &amp; Recht), jeweils in drei Stufen. Sie funktioniert ohne Internet, ohne Werbung und ohne Konten beim Anbieter.</p>
 
   <h2>Kontakt</h2>
   <p>Fragen, Fehler oder Ideen? Schreiben Sie an <a href="mailto:{MAIL}?subject={APP}">{MAIL}</a>. In der App geht das auch über Einstellungen → „Feedback senden“.</p>
+
+  <h2 id="klasse">Mit einer Klasse starten</h2>
+  <p><b>Einmalig auf dem Gerät der Lehrkraft</b></p>
+  <ol>
+    <li>Beim ersten Start „Schule“ wählen (später: Zahnrad → Nutzungsart → Ändern) und ein Passwort für den Lehrkraftbereich festlegen.</li>
+    <li>Im Lehrkraftbereich „Neue Klasse“ anlegen, z.&nbsp;B. „9b“. Optional eine Liste mit Kürzeln hinterlegen und bei den Namen „Kürzel aus der Klassenliste“ einstellen – dann wählen die Kinder beim Beitreten ihr Kürzel, statt einen Namen einzutippen.</li>
+    <li>„Klassen-Code zeigen“: Der QR-Code erscheint groß, z.&nbsp;B. für den Beamer.</li>
+  </ol>
+  <p><b>Einmalig auf jedem Schülergerät</b></p>
+  <ol>
+    <li>Die App ebenfalls auf „Schule“ einrichten. Jedes Gerät hat sein eigenes Passwort für den Lehrkraftbereich – am einfachsten überall dasselbe. Die Geräte sind nicht miteinander verbunden; deshalb ist kein Internet nötig.</li>
+    <li>Jedes Kind legt ein Profil mit eigenem, sicherem Passwort an. Mehrere Kinder können sich ein Gerät teilen.</li>
+    <li>Im Profilmenü (Kreis mit den Initialen oben rechts) „Klasse beitreten“ wählen und den Klassen-Code scannen.</li>
+  </ol>
+  <p><b>Ergebnisse einsammeln – so oft Sie möchten</b></p>
+  <ol>
+    <li>Die Kinder zeigen im Profilmenü „Fortschritt abgeben“. Teilen sich mehrere Kinder ein Gerät, geht es schneller über „Abgabe aller Profile“ auf der Anmeldeseite: Die Codes wechseln automatisch, ohne dass sich jemand anmelden muss.</li>
+    <li>Auf dem Gerät der Lehrkraft die Klasse öffnen und „Ergebnisse einsammeln“ wählen. Die Kamera bleibt an; jeder erkannte Code piept und erscheint in der Liste. Beim nächsten Einsammeln werden die Ergebnisse einfach aktualisiert.</li>
+    <li>Die Übersicht zeigt jedes Kind und jedes Thema, wahlweise je Stufe, dazu die Stationen, die der Klasse am schwersten fallen. Unter „Exportieren“ gibt es alles als CSV-Datei für die Tabellenkalkulation.</li>
+  </ol>
+  <p>Ohne Kamera lässt sich jeder Code auch als Text kopieren und einfügen. Klassen und eingesammelte Ergebnisse werden zum Schuljahresende (31.&nbsp;Juli) automatisch gelöscht.</p>
 
   <h2>Häufige Fragen</h2>
   <p><b>Ein Kind hat sein Passwort vergessen.</b><br>Im Eltern- bzw. Lehrkraftbereich beim Profil „Passwort zurücksetzen“ wählen. Das Kind bekommt ein Einmal-Passwort und legt danach ein neues, sicheres Passwort fest.</p>
   <p><b>Das Passwort für den Eltern- bzw. Lehrkraftbereich ist vergessen.</b><br>Aus Sicherheitsgründen lässt es sich nicht wiederherstellen. Unter „Passwort vergessen?“ können alle Daten auf dem Gerät gelöscht werden; danach wird die App neu eingerichtet.</p>
   <p><b>Wie kommen die Ergebnisse zur Lehrkraft?</b><br>Die Lehrkraft legt im Lehrkraftbereich eine Klasse an und zeigt den Klassen-Code. Die Schülerinnen und Schüler treten im Profilmenü mit „Klasse beitreten“ bei und zeigen mit „Fortschritt abgeben“ ihren Code. Die Lehrkraft sammelt ihn mit „Ergebnisse einsammeln“ per Kamera ein. Alles läuft direkt von Bildschirm zu Kamera, ohne Internet.</p>
   <p><b>Die Kamera scannt nicht.</b><br>Prüfen Sie in den Einstellungen des Geräts, ob die App die Kamera nutzen darf. Alternativ kann ein Foto des Codes gewählt oder der Code als Text kopiert und eingefügt werden.</p>
-  <p><b>Muss man Profile anlegen?</b><br>Nein. Mit „Einfach loslegen“ wird ohne Profile und Passwörter geübt. Profile lassen sich später in den Einstellungen einrichten; die bisherigen Sterne bleiben erhalten.</p>
+  <p><b>Muss man Profile anlegen?</b><br>Nein. Mit „Einfach loslegen“ wird ohne Profile und Passwörter geübt. Profile lassen sich später unter Zahnrad → Nutzungsart → Ändern einrichten; die bisherigen Sterne bleiben erhalten.</p>
   <p><b>Wo liegen die Daten, und wie lösche ich sie?</b><br>Ausschließlich auf dem Gerät. Profile und Klassen löschen Sie im Eltern- bzw. Lehrkraftbereich, dort auch „Alle Daten löschen“. Beim Entfernen der App wird alles gelöscht. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
   <p><b>Gibt es eine Schullizenz?</b><br>Die App ist ein Einmalkauf ohne In-App-Käufe. Schulen erhalten sie über das Volumenprogramm des App-Vertriebs zum Bildungsrabatt.</p>
 """
 SUPPORT_EN = f"""
   <h1>{APP} – Computer Science</h1>
   <p class="stand">Help and contact · {STAND_EN}</p>
-  <p>{APP} is a learning app for computer science in years 9 and 10: 36 short stations in nine topics (computers &amp; hardware, spreadsheets, secure passwords, block coding, encryption, microcontrollers, encoding data, the internet, data &amp; law), each on three levels. It works without internet, without ads and without accounts with the provider.</p>
+  <p>{APP} is a learning app for computer science in years 9 and 10: 108 learning units – 36 short stations in nine topics (computers &amp; hardware, spreadsheets, secure passwords, block coding, encryption, microcontrollers, encoding data, the internet, data &amp; law), each on three levels. It works without internet, without ads and without accounts with the provider.</p>
 
   <h2>Contact</h2>
   <p>Questions, bugs or ideas? Write to <a href="mailto:{MAIL}?subject={APP}">{MAIL}</a>. In the app you can also use Settings → “Send feedback”.</p>
+
+  <h2 id="class">Getting started with a class</h2>
+  <p><b>Once, on the teacher’s device</b></p>
+  <ol>
+    <li>On first launch choose “School” (later: gear → How it is used → Change) and set a password for the teacher area.</li>
+    <li>In the teacher area, create a “New class”, e.g. “9b”. Optionally add a list of codes and set names to “Codes from the class list” – students then pick their code when joining instead of typing a name.</li>
+    <li>“Show class code”: the QR code appears in large size, e.g. for the projector.</li>
+  </ol>
+  <p><b>Once, on every student device</b></p>
+  <ol>
+    <li>Set up the app as “School” as well. Each device has its own password for the teacher area – easiest to use the same one everywhere. The devices are not connected to each other, so no internet is needed.</li>
+    <li>Each student creates a profile with their own secure password. Several students can share one device.</li>
+    <li>In the profile menu (circle with initials, top right) choose “Join a class” and scan the class code.</li>
+  </ol>
+  <p><b>Collecting results – as often as you like</b></p>
+  <ol>
+    <li>Students show “Hand in progress” in their profile menu. If several share a device, “Hand in all profiles” on the login page is quicker: the codes change automatically and nobody has to log in.</li>
+    <li>On the teacher’s device, open the class and choose “Collect results”. The camera stays on; every recognised code beeps and appears in the list. Collecting again simply updates the results.</li>
+    <li>The overview shows every student and every topic, optionally per level, plus the stations the class finds hardest. “Export” gives you everything as a CSV file for spreadsheets.</li>
+  </ol>
+  <p>Without a camera every code can also be copied and pasted as text. Classes and collected results are deleted automatically at the end of the school year (31 July).</p>
 
   <h2>Frequently asked questions</h2>
   <p><b>A child forgot their password.</b><br>In the parent or teacher area, choose “Reset password” for the profile. The child gets a one-time password and then sets a new, secure password.</p>
   <p><b>The password for the parent or teacher area is forgotten.</b><br>For security reasons it cannot be recovered. Under “Forgotten the password?” all data on the device can be deleted; the app is then set up again.</p>
   <p><b>How do results get to the teacher?</b><br>The teacher creates a class in the teacher area and shows the class code. Students use “Join a class” in their profile menu and show their code with “Hand in progress”. The teacher collects it with “Collect results” using the camera – directly from screen to camera, without internet.</p>
   <p><b>The camera does not scan.</b><br>Check in the device settings that the app may use the camera. Alternatively, choose a photo of the code or copy and paste the code as text.</p>
-  <p><b>Do I need profiles?</b><br>No. With “Just start” you practise without profiles or passwords. Profiles can be set up later in the settings; the stars collected so far are kept.</p>
+  <p><b>Do I need profiles?</b><br>No. With “Just start” you practise without profiles or passwords. Profiles can be set up later via gear → How it is used → Change; the stars collected so far are kept.</p>
   <p><b>Where is the data, and how do I delete it?</b><br>Only on the device. Delete profiles and classes in the parent or teacher area, where you also find “Delete all data”. Removing the app deletes everything. More in the <a href="datenschutz-en.html">privacy policy</a>.</p>
   <p><b>Is there a school licence?</b><br>The app is a one-time purchase without in-app purchases. Schools get it through the app store’s volume purchase programme at the education discount.</p>
 """

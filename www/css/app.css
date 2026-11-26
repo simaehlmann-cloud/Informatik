@@ -125,6 +125,8 @@ svg { flex-shrink: 0; }
 .st-tools { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; gap: 10px; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 20px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--card); font-weight: 700; transition: transform .1s, background .15s, border-color .15s, opacity .15s; }
+a.btn { color: var(--ink); text-decoration: none; }
+a.btn.pri { color: #fff; }
 .btn:hover { border-color: var(--c); }
 .btn:active { transform: scale(.98); }
 .btn.pri { background: var(--c); border-color: var(--c); color: #fff; box-shadow: 0 6px 16px color-mix(in srgb, var(--c) 30%, transparent); }
@@ -638,3 +640,12 @@ details.more summary { cursor: pointer; font-weight: 700; color: var(--c); paddi
 .chip.s1 { background: color-mix(in srgb, var(--star) 28%, var(--card)); color: #8A5A00; }
 .chip.s2 { background: var(--ok-bg); color: var(--ok); }
 [data-theme="dark"] .chip.s1 { color: var(--star); }
+
+/* Über Bit für Bit: Schritte für die Schule; Hervorheben der Nutzungsart im Bereich */
+.about h3 { margin: 18px 0 6px; }
+.about p b { color: var(--ink); }
+.how-steps { margin: 4px 0 10px; padding-left: 22px; color: var(--muted); }
+.how-steps li { margin: 4px 0; line-height: 1.4; }
+.setting.flash { animation: flash 1.6s ease 2; border-radius: 12px; }
+@keyframes flash { 30% { background: color-mix(in srgb, var(--accent, #4255E8) 16%, transparent); } }
+.how-steps + p { margin-top: 10px; }

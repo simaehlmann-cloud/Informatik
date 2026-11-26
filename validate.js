@@ -398,6 +398,9 @@ ye('2026-11-25', '2027-07-31'); ye('2027-03-01', '2027-07-31'); ye('2027-08-15',
   ok((await sandbox.parseResultCode(code, [other])).error === 'codeOtherClass', 'Code fremder Klasse wird erkannt');
   ok((await sandbox.parseResultCode(code, [Object.assign({}, klass, { key: other.key = B.enc(globalThis.crypto.getRandomValues(new Uint8Array(16))) })])).error === 'codeBroken', 'falscher Schlüssel wird erkannt');
   ok((await sandbox.parseResultCode('IW2.' + 'A'.repeat(80), [klass])).error && (await sandbox.parseResultCode('IW1.' + 'A'.repeat(80), [klass])).error === 'codeUnknown', 'Unsinn wird abgelehnt');
+  // ---- „108 Lerneinheiten“: jede Station braucht eigene Aufgaben für Stufe 1 und 3 ----
+  vm.runInContext("CHAPTERS.flatMap(c => c.stations).map(s => [s.id, !!(s.levels && s.levels[1] && s.levels[3])])", sandbox)
+    .forEach(([id, has]) => ok(has, `${id}: keine eigenen Aufgaben für Stufe 1 und 3 (Zahl der Lerneinheiten stimmt dann nicht)`));
   // ---- iOS-Hülle und Versionen ----
   const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'));
   const appVersion = vm.runInContext("typeof APP === 'object' ? APP.version : null", sandbox);

@@ -43,11 +43,20 @@ def setup(page, mode="home", name_mode="self"):
     page.wait_for_selector("#new-profile")
 
 def fill_pw(page, pw, old=None):
-    inputs = page.locator(".sheet-card .pw-form input, .stage .pw-form input")
-    if old:
-        inputs.nth(0).fill(old); inputs.nth(1).fill(pw); inputs.nth(2).fill(pw)
-    else:
-        inputs.nth(0).fill(pw); inputs.nth(1).fill(pw)
+    # Das Formular kann während einer Animation neu aufgebaut werden – dann noch einmal ausfüllen
+    for attempt in range(3):
+        page.wait_for_selector(".pw-form input")
+        page.wait_for_timeout(150)
+        inputs = page.locator(".sheet-card .pw-form input, .stage .pw-form input")
+        if old:
+            inputs.nth(0).fill(old); inputs.nth(1).fill(pw); inputs.nth(2).fill(pw)
+        else:
+            inputs.nth(0).fill(pw); inputs.nth(1).fill(pw)
+        try:
+            page.wait_for_function("() => { const b = document.querySelector('.pw-form button[type=submit]'); return b && !b.disabled; }", timeout=4000)
+            break
+        except Exception:
+            if attempt == 2: raise
     page.click(".pw-form button[type=submit]")
 
 def new_profile(page, name, lvl=2, pw=KID_PW):
@@ -351,14 +360,25 @@ with sync_playwright() as p:
     if SHOTS: page.screenshot(path="shots/f-home.png")
     # Einstellungen → Profile einrichten; Sterne gehen an das erste Profil
     page.click(".topbar .icon-btn")
-    page.wait_for_selector("#setup-profiles")
+    page.wait_for_selector("#change-mode")
+    ok("Ohne Profile" in page.inner_text("#use-mode"), "Nutzungsart zeigt nicht „Ohne Profile“")
     if SHOTS: page.wait_for_timeout(500); page.screenshot(path="shots/f-settings.png")
-    page.click("#setup-profiles")
+    page.click("#change-mode")
     page.wait_for_selector(".mode-card[data-mode='home']")
     ok(page.locator(".mode-card[data-mode='free']").count() == 0, "Profile einrichten: „Einfach loslegen“ sollte fehlen")
     garbage(page, "Profile einrichten")
     setup(page, "home")
     new_profile(page, "Mia", 2)
+    # Lehrkraft-/Elternbereich öffnen meldet das Kinderprofil ab
+    ok(page.evaluate("Store.current() && Store.current().name") == "Mia", "Mia sollte angemeldet sein")
+    page.click(".topbar .icon-btn"); page.wait_for_selector("#change-mode")
+    ok("Zuhause" in page.inner_text("#use-mode"), "Nutzungsart zeigt nicht „Zuhause“")
+    page.click("#change-mode"); page.fill(".pw-field", ADMIN_PW); page.click("form button[type=submit]")
+    page.wait_for_selector("#adm-mode")
+    ok(page.evaluate("Store.current()") is None, "Kinderprofil bleibt im Lehrkraftbereich angemeldet")
+    page.click(".back-btn.dark"); page.wait_for_selector(".prof-btn")
+    ok(page.locator("#profile-btn").count() == 0, "nach „Sperren & zurück“ sollte die Profilübersicht kommen")
+    login(page, "Mia"); page.wait_for_selector(".ch-card")
     ok(page.evaluate("Store.stars('hw-io', 1)") == 3 and page.evaluate("Store.current().stats['hw-io'].n") == 1, "Sterne ohne Profile gehen beim Einrichten verloren")
     # Lehrkraft/Eltern: zurück zu „Ohne Profile“ – Profile bleiben erhalten
     page.goto(BASE + "#/admin"); page.fill(".pw-field", ADMIN_PW); page.click("form button[type=submit]")
@@ -370,7 +390,7 @@ with sync_playwright() as p:
     page.goto(BASE); page.wait_for_selector(".ch-card")
     ok(page.evaluate("Store.stars('hw-io', 1)") == 0, "ohne Profile: fremde Sterne sichtbar")
     page.click(".topbar .icon-btn"); page.wait_for_selector("#open-admin")
-    ok(page.locator("#setup-profiles").count() == 0, "bei vorhandenem Bereich kein zweites Einrichten")
+    ok(page.get_attribute("#change-mode", "href") == "#/admin", "bei vorhandenem Bereich kein zweites Einrichten")
     page.click("#open-admin"); page.fill(".pw-field", ADMIN_PW); page.click("form button[type=submit]")
     page.wait_for_selector(".seg-ctl button[data-mode='home']")
     page.click(".seg-ctl button[data-mode='home']"); page.wait_for_timeout(200)
@@ -393,6 +413,21 @@ with sync_playwright() as p:
     ok(page.evaluate("Store.stars('hw-io', 2)") == 0 and page.evaluate("Store.stars('hw-io', 1)") == 3, "Gast-Sterne landen im Profil")
     ok(not errs, f"Ohne Profile/Gast: Konsolenfehler: {errs[:5]}")
     ctx.close()
+    # ---------- 5b. Über Bit für Bit ----------
+    ctx, page, errs = ctx_page()
+    page.goto(BASE)
+    page.evaluate("d=>{localStorage.clear();localStorage.setItem('infowerk.v2',JSON.stringify(d))}", {"lang": "de", "mode": "free", "solo": {"level": 2, "stars": {}, "stats": {}}})
+    page.reload(); page.wait_for_selector(".ch-card")
+    ok("108 Lerneinheiten" in page.inner_text(".hero"), "Startseite nennt keine 108 Lerneinheiten")
+    page.click(".topbar .icon-btn"); page.wait_for_timeout(500); page.locator("#sheet-root .btn-row button").first.click(); page.wait_for_selector(".about .how-steps li")
+    txt = page.inner_text(".about")
+    ok("108 Lerneinheiten" in txt and "So nutzt du Bit für Bit" in txt and page.locator(".about .how-steps li").count() == 5, "Über Bit für Bit unvollständig")
+    ok("<b>" not in txt, "HTML-Reste im Über-Text")
+    garbage(page, "Über Bit für Bit")
+    if SHOTS: page.wait_for_timeout(400); page.screenshot(path="shots/about.png", full_page=True)
+    ok(not errs, f"Über: Konsolenfehler: {errs[:5]}")
+    ctx.close()
+
     # ---------- 6. Ziehen: kleine Karte über dem Finger, farbige Kisten, Info ohne Lösung ----------
     ctx, page, errs = ctx_page()
     page.goto(BASE)
@@ -435,5 +470,6 @@ with sync_playwright() as p:
     ctx.close()
     browser.close()
 
+for f in fails: print("✗", f)
 print(f"{checks} Prüfungen, {len(fails)} Fehler")
 sys.exit(1 if fails else 0)
